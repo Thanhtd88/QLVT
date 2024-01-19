@@ -7,6 +7,7 @@ use App\Models\administrator\Diesel;
 use App\Models\administrator\Personal;
 use App\Models\administrator\Vihicle;
 use App\Models\administrator\Warehouse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,7 +68,7 @@ class DieselController extends Controller
         if($quang_duong / $so_ngay > 1300){
             return redirect()->back()->with('msg', 'Số km bất thường. Kiểm tra lại số km hoặc số xe!');
         }
-
+        $ngay_do = Carbon::createFromFormat('d/m/Y', $request->ngay_do)->format('Y-m-d');
         Diesel::create([
             'odo' => $request->odo,
             'ngay_do' => $request->ngay_do,
@@ -146,10 +147,10 @@ class DieselController extends Controller
         if($quang_duong / $so_ngay > 1300){
             return redirect()->back()->with('msg', 'Số km bất thường. Kiểm tra lại số km hoặc số xe!');
         }
-
+        $ngay_do = Carbon::createFromFormat('d/m/Y', $request->ngay_do)->format('Y-m-d');
         $arrayData = [
             'odo' => $request->odo,
-            'ngay_do' => $request->ngay_do,
+            'ngay_do' => $ngay_do,
             'noi_do' => $request->noi_do,
             'so_lit' => $request->so_lit,
             'don_gia' => $warehouse->don_gia,
