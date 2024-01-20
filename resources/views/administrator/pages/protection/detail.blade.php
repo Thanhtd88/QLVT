@@ -42,11 +42,16 @@
                         <form role="form" method="POST" action="{{ route('admin.protection.update', ['protection' => $protection->id]) }}">         
                             @csrf
                             @method('PATCH')
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="ngay_ban_giao">Ngày cấp</label>
-                                    <input type="datetime-local" class="form-control" id="ngay_ban_giao" name="ngay_ban_giao" value="{{ old('ngay_ban_giao') ?? $protection->ngay_ban_giao }}">
-                                </div>  
+                            <div class="card-body"> 
+                                <div class="input-group mb-3">
+                                    <label for="">Ngày cấp</label>
+                                    <div class="input-group date reservationdate" id="ngay_ban_giao" data-target-input="nearest">                                        
+                                        <input value="{{ old('ngay_ban_giao') ?? date('d-m-Y', strtotime($protection->ngay_ban_giao)) }}" name="ngay_ban_giao" type="text" class="form-control datetimepicker-input" data-target="#ngay_ban_giao" @error('ngay_ban_giao') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                        <div class="input-group-append" data-target="#ngay_ban_giao" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group mb-3">
                                     <label for="personal_id">Người nhận</label>
                                     <select class="form-control select2" style="" id="personal_id" name="personal_id">
@@ -98,7 +103,10 @@
         $('.toast').toast('show');
     });
     $(function () {
-        $('.select2').select2()  
+        $('.select2').select2();
+        $('.reservationdate').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });  
     })
 </script>
 @endsection

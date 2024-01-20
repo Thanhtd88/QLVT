@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\administrator\Personal;
 use App\Models\administrator\Protection;
 use App\Models\administrator\Warehouse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,8 +47,9 @@ class ProtectionController extends Controller
      */
     public function store(Request $request)
     {
+        $ngay_ban_giao = Carbon::createFromFormat('d/m/Y', $request->ngay_ban_giao)->format('Y-m-d H:i:s');
         Protection::create([
-            'ngay_ban_giao' => $request->ngay_ban_giao,
+            'ngay_ban_giao' => $ngay_ban_giao,
             'so_luong' => $request->so_luong,
             'personal_id' => $request->personal_id,
             'warehouse_id' => $request->warehouse_id,
@@ -90,18 +92,20 @@ class ProtectionController extends Controller
     {
         $protection = Protection::find($id);
         $warehouse = Warehouse::find($protection->warehouse_id);
-        $warehouse->tong_xuat -= $protection->so_luong;
-        $warehouse->ton_kho += $protection->so_luong;
-        $warehouse->save();
-
+        
+        $ngay_ban_giao = Carbon::createFromFormat('d/m/Y', $request->ngay_ban_giao)->format('Y-m-d H:i:s');
         $arrayData = [
-            'ngay_ban_giao' => $request->ngay_ban_giao,
+            'ngay_ban_giao' => $ngay_ban_giao,
             'so_luong' => $request->so_luong,
             'personal_id' => $request->personal_id,
             'warehouse_id' => $request->warehouse_id,
         ];
 
         $protection->update($arrayData);
+
+        $warehouse->tong_xuat -= $protection->so_luong;
+        $warehouse->ton_kho += $protection->so_luong;
+        $warehouse->save();
 
         $warehouse = Warehouse::find($request->warehouse_id);
         $warehouse->tong_xuat += $request->so_luong;

@@ -117,7 +117,7 @@
     $(function () {
         $('.select2').select2();
         $('.reservationdate').datetimepicker({
-            format: 'DD/MM/YYYY H:m:s'
+            format: 'DD/MM/YYYY'
         });
     })
 </script>

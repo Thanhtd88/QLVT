@@ -80,6 +80,7 @@ class VihicleController extends Controller
             'hieu_luc_ngan_hang' => !is_null($request->hieu_luc_ngan_hang) ? Carbon::createFromFormat('d/m/Y', $request->hieu_luc_ngan_hang)->format('Y-m-d') : null,
             'unit_id' => $request->unit_id,
             'dinh_muc_tb' => $request->dinh_muc_tb,
+            'dinh_muc_thay_nhot' => $request->dinh_muc_thay_nhot,
             'ngay_mua' => Carbon::createFromFormat('d/m/Y', $request->ngay_mua)->format('Y-m-d'),
             'ngay_ban' => !is_null($request->ngay_ban) ? Carbon::createFromFormat('d/m/Y', $request->ngay_mua)->format('Y-m-d') : null,
             'trang_thai' => $request->trang_thai
@@ -145,6 +146,7 @@ class VihicleController extends Controller
             'hieu_luc_ngan_hang' => !is_null($request->hieu_luc_ngan_hang) ? Carbon::createFromFormat('d/m/Y', $request->hieu_luc_ngan_hang)->format('Y-m-d') : null,
             'unit_id' => $request->unit_id,
             'dinh_muc_tb' => $request->dinh_muc_tb,
+            'dinh_muc_thay_nhot' => $request->dinh_muc_thay_nhot,
             'ngay_mua' => Carbon::createFromFormat('d/m/Y', $request->ngay_mua)->format('Y-m-d'),
             'ngay_ban' => !is_null($request->ngay_ban) ? Carbon::createFromFormat('d/m/Y', $request->ngay_mua)->format('Y-m-d') : null,
             'trang_thai' => $request->trang_thai

@@ -98,8 +98,8 @@
 <script src="{{ asset('administrator/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ asset('administrator/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset('administrator/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-
-
+<!-- Google Chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @yield('js-custom')
 </body>
 </html>

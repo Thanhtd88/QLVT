@@ -62,7 +62,7 @@
                     <td>{{ $diesel->noi_do == 0 ? 'Bình Hòa' : 'Đông Nhì' }}</td>
                     <td>{{ $diesel->odo }}</td>
                     <td>{{ !is_null($diesel->vihicle_id) ? $diesel->vihicle->so_xe : '' }}</td>
-                    <td>{{ !is_null($diesel->vihicle_id) ? $diesel->vihicle->loai_thung.' | '.number_format($diesel->vihicle->khoi_luong_hang_hoa/1000, 2) : '' }}</td>
+                    <td class="text-center">{{ !is_null($diesel->vihicle_id) ? $diesel->vihicle->loai_thung.' | '.number_format($diesel->vihicle->khoi_luong_hang_hoa/1000, 2) : '' }}</td>
                     <td>{{ $diesel->so_lit }}</td>
                     <td>{{ number_format($diesel->don_gia) }}</td>
                     <td>{{ number_format($diesel->thanh_tien) }}</td>

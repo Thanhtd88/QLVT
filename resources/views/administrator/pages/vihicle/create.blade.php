@@ -171,7 +171,7 @@
                                         <input type="text" class="form-control msg-white" @error('khoi_luong_keo_theo') placeholder="{{ $message }}" style="background: red;" @enderror name="khoi_luong_keo_theo">
                                     </div>
                                 </div>
-                                <div class="box1 col-md-4">
+                                <div class="box1 col-md-3">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Số người được phép chở</span>
@@ -179,7 +179,7 @@
                                         <input type="text" class="form-control msg-white" @error('so_nguoi_cho') placeholder="{{ $message }}" style="background: red;" @enderror name="so_nguoi_cho">
                                     </div>
                                 </div>
-                                <div class="box1 col-md-4">
+                                <div class="box1 col-md-3">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Loại nhiên liệu</span>
@@ -187,12 +187,20 @@
                                         <input type="text" class="form-control msg-white" @error('loai_nhien_lieu') placeholder="{{ $message }}" style="background: red;" @enderror name="loai_nhien_lieu" value="Diesel">
                                     </div>
                                 </div>
-                                <div class="box1 col-md-4">
+                                <div class="box1 col-md-3">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Định mức nhiên liệu</span>
                                         </div>
                                         <input type="text" class="form-control msg-white" @error('dinh_muc_tb') placeholder="{{ $message }}" style="background: red;" @enderror name="dinh_muc_tb">
+                                    </div>
+                                </div>
+                                <div class="box1 col-md-3">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Định mức thay nhớt</span>
+                                        </div>
+                                        <input type="text" class="form-control msg-white" @error('dinh_muc_thay_nhot') placeholder="{{ $message }}" style="background: red;" @enderror name="dinh_muc_thay_nhot">
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">

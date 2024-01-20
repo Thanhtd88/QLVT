@@ -48,34 +48,31 @@ class DieselController extends Controller
     public function store(Request $request)
     {
         $ngay_truoc = Diesel::where('vihicle_id', $request->vihicle_id)->orderBy('ngay_do', 'desc')->first();        
-
+        $ngay_do = Carbon::createFromFormat('d/m/Y H:i:s', $request->ngay_do)->format('Y-m-d H:i:s');
         $warehouse = Warehouse::where('ma_vat_tu', 'DO001')->first();
         $thanh_tien = $warehouse->don_gia * $request->so_lit;
 
         $vihicle = Vihicle::find($request->vihicle_id);
         $odo_cu = !is_null($vihicle->odo) ? $vihicle->odo : 0;
         
-        if($request->odo < $odo_cu){
-            return redirect()->back()->with('msg', 'Số km mới nhỏ hơn số km cũ. Kiểm tra lại!');
-        }
         if($odo_cu == 0){
             $quang_duong = 0;
             $dinh_muc = 0;
+        }else if($odo_cu > $request->odo){
+            return redirect()->back()->with('msg', 'Số km mới nhỏ hơn số km cũ. Kiểm tra lại!');
         }else{
             $quang_duong = $request->odo - $odo_cu;
-            $dinh_muc = $request->so_lit / $quang_duong * 100;
-        }
-        dd($ngay_truoc);
-        if(!is_null($ngay_truoc)){
-            $so_ngay = floor(abs(strtotime($request->ngay_do) - strtotime($ngay_truoc->ngay_do)) / (60*60*24));
+            $so_ngay = floor(abs(strtotime($ngay_do) - strtotime($ngay_truoc->ngay_do)) / (60*60*24));
             if($quang_duong / $so_ngay > 1300){
                 return redirect()->back()->with('msg', 'Số km bất thường. Kiểm tra lại số km hoặc số xe!');
-            }
+            }else{
+                $dinh_muc = $request->so_lit / $quang_duong * 100;
+            }            
         }
 
         Diesel::create([
             'odo' => $request->odo,
-            'ngay_do' => Carbon::createFromFormat('d/m/Y H:i:s', $request->ngay_do)->format('Y-m-d H:i:s'),
+            'ngay_do' => $ngay_do,
             'noi_do' => $request->noi_do,
             'so_lit' => $request->so_lit,
             'don_gia' => $warehouse->don_gia,

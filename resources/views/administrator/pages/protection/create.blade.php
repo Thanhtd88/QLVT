@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Dầu DO - Đổ dầu</h1>
+                    <h1>Trang bị bảo hộ - Cấp mới</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -35,17 +35,22 @@
                 <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Trang bị bảo hộ - Cấp mới</h3>
+                            <h3 class="card-title">Thông tin cấp trang bị</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form role="form" method="POST" action="{{ route('admin.protection.store') }}">         
                             @csrf
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="ngay_ban_giao">Ngày cấp</label>
-                                    <input type="datetime-local" class="form-control" id="ngay_ban_giao" name="ngay_ban_giao">
-                                </div>  
+                            <div class="card-body"> 
+                                <div class="input-group mb-3">
+                                    <label for="">Ngày cấp</label>
+                                    <div class="input-group date reservationdate" id="ngay_ban_giao" data-target-input="nearest">                                        
+                                        <input name="ngay_ban_giao" type="text" class="form-control datetimepicker-input" data-target="#ngay_ban_giao" @error('ngay_ban_giao') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                        <div class="input-group-append" data-target="#ngay_ban_giao" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group mb-3">
                                     <label for="personal_id">Người nhận</label>
                                     <select class="form-control select2" style="" id="personal_id" name="personal_id">
@@ -97,7 +102,10 @@
         $('.toast').toast('show');
     });
     $(function () {
-        $('.select2').select2()  
+        $('.select2').select2();
+        $('.reservationdate').datetimepicker({
+            format: 'DD/MM/YYYY hh:mm:ss'
+        });  
     })
 </script>
 @endsection
