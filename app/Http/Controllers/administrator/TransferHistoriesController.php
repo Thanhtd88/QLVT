@@ -127,30 +127,32 @@ class TransferHistoriesController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        
         if($request->loai_bien_ban == 0){
             $personal_id = $request->r_personal_id;
         }else{
             $personal_id = $request->d_personal_id;
         }
-
+        
         $personal = Personal::find($personal_id);
         $tai_xe = $personal->ma_nv.'-'.$personal->ho_ten;
         $tai_co_xe = $personal->vihicle_id;
-
         $vihicle = Vihicle::find($request->vihicle_id);
         $so_xe = $vihicle->so_xe; 
         $xe_co_tai = $vihicle->personal_id;
-
-        if(!is_null($tai_co_xe) && $request->loai_bien_ban == 0){
-            $vihicle_cu = Vihicle::find($tai_co_xe);
-            return redirect()->back()->with('msg', "Tài xế $tai_xe đã được bàn giao xe $vihicle_cu->so_xe vui lòng kiểm tra lại");
-        }
-        if(!is_null($xe_co_tai) && $request->loai_bien_ban == 0){
-            $personal_cu = Personal::find($xe_co_tai);
-            return redirect()->back()->with('msg', "Xe $so_xe đã được bàn giao cho tài xế $personal_cu->ho_ten vui lòng kiểm tra lại");
-        }      
-        if(is_null($tai_co_xe) || $tai_co_xe !== $request->vihicle_id && $request->loai_bien_ban == 1){
-            return redirect()->back()->with('msg', "Tài xế $tai_xe chưa được bàn giao xe $so_xe vui lòng kiểm tra lại");
+        
+        if($request->loai_bien_ban == 0){
+            if(!is_null($tai_co_xe)){
+                $vihicle_cu = Vihicle::find($tai_co_xe);
+                return redirect()->back()->with('msg', "Tài xế $tai_xe đã được bàn giao xe $vihicle_cu->so_xe vui lòng kiểm tra lại");
+            }else if(!is_null($xe_co_tai)){
+                $personal_cu = Personal::find($xe_co_tai);
+                return redirect()->back()->with('msg', "Xe $so_xe đã được bàn giao cho tài xế $personal_cu->ho_ten vui lòng kiểm tra lại");
+            }
+        }else{
+            if(is_null($tai_co_xe) || $tai_co_xe !== $request->vihicle_id){
+                return redirect()->back()->with('msg', "Tài xế $tai_xe chưa được bàn giao xe $so_xe vui lòng kiểm tra lại");
+            }
         }
         
         $arrayData = [

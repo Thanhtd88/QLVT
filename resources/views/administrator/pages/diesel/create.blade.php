@@ -77,7 +77,7 @@
                                 </div>   
                                 <div class="form-group">
                                     <label for="so_lit">Số lít đổ</label>
-                                    <input type="number" class="form-control" id="so_lit" name="so_lit" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*">
+                                    <input type="text" class="form-control" id="so_lit" name="so_lit" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*">
                                 </div>  
                                 <div class="form-group mb-3">
                                     <label for="personal_id">Tài xế</label>
@@ -117,7 +117,7 @@
     $(function () {
         $('.select2').select2();
         $('.reservationdate').datetimepicker({
-            format: 'DD/MM/YYYY'
+            format: 'DD/MM/YYYY H:m:s'
         });
     })
 </script>

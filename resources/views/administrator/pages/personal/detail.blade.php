@@ -151,7 +151,7 @@
                                             <div class="input-group-prepend" data-target="#ngay_cap_gplx" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
-                                            <input name="ngay_cap_gplx" type="text" value="{{ old('ngay_cap_gplx') ?? date("d-m-Y", strtotime($personal->ngay_cap_gplx)) }}" class="form-control datetimepicker-input" data-target="#reservationdate-cccd" placeholder="Ngày cấp GPLX"/>
+                                            <input name="ngay_cap_gplx" type="text" value="{{ old('ngay_cap_gplx') ?? !is_null($personal->ngay_cap_gplx) ? date("d-m-Y", strtotime($personal->ngay_cap_gplx)) : '' }}" class="form-control datetimepicker-input" data-target="#reservationdate-cccd" placeholder="Ngày cấp GPLX"/>
                                         </div>
                                     </div>
                                 </div>
@@ -274,7 +274,7 @@
 <script>
     $(function () {
         $('.reservationdate').datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'DD/MM/YYYY H:m:s'
     });
     })
 </script>

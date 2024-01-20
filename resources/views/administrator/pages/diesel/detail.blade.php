@@ -54,7 +54,7 @@
                                 <div class="input-group mb-3">
                                     <label for="">Ngày đổ</label>
                                     <div class="input-group date reservationdate" id="ngay_do" data-target-input="nearest">
-                                        <input name="ngay_do" type="text" value="{{ date('d-m-Y', strtotime($diesel->ngay_do)) }}" class="form-control datetimepicker-input" data-target="#ngay_do" @error('ngay_do') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                        <input name="ngay_do" type="text" value="{{ date('d-m-Y H:i:s', strtotime($diesel->ngay_do)) }}" class="form-control datetimepicker-input" data-target="#ngay_do" @error('ngay_do') placeholder="{{ $message }}" style="background: red;" @enderror/>
                                         <div class="input-group-append" data-target="#ngay_do" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                         </div>
@@ -118,7 +118,7 @@
     $(function () {
         $('.select2').select2();
         $('.reservationdate').datetimepicker({
-            format: 'DD/MM/YYYY'
+            format: 'DD/MM/YYYY H:m:s'
         }); 
     })
 </script>

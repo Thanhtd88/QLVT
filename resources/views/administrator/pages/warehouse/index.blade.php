@@ -43,11 +43,11 @@
                   <th>#</th>
                   <th>Mã vật tư</th>
                   <th>Tên vật tư</th>
-                  <th>SL nhập</th>
-                  <th>SL Xuất</th>
-                  <th>Tồn kho</th>
-                  <th>Giá mới</th>
-                  <th>Thể loại</th>
+                  <th class="text-center">SL nhập</th>
+                  <th class="text-center">SL Xuất</th>
+                  <th class="text-center">Tồn kho</th>
+                  <th class="text-center">Giá mới</th>
+                  <th class="text-center">Thể loại</th>
                   <th>Thao tác</th>
                 </tr>
                 </thead>
@@ -57,11 +57,11 @@
                     <td>{{ $loop->iteration}}</td>
                     <td>{{ $warehouse->ma_vat_tu }}</td>
                     <td>{{ $warehouse->vat_tu }}</td>
-                    <td>{{ $warehouse->tong_nhap }}</td>
-                    <td>{{ $warehouse->tong_xuat }}</td>
-                    <td>{{ $warehouse->ton_kho }}</td>
-                    <td>{{ number_format($warehouse->don_gia) }}</td>
-                    <td>{{ $warehouse->the_loai == 0 ? 'Phụ tùng' : 'Dụng cụ bảo hộ' }}</td>
+                    <td class="text-right">{{ number_format($warehouse->tong_nhap,2) }}</td>
+                    <td class="text-right">{{ number_format($warehouse->tong_xuat,2) }}</td>
+                    <td class="text-right">{{ number_format($warehouse->ton_kho,2) }}</td>
+                    <td class="text-right">{{ number_format($warehouse->don_gia) }}</td>
+                    <td class="text-center">{{ $warehouse->the_loai == 0 ? 'Phụ tùng' : 'Dụng cụ bảo hộ' }}</td>
                     <td>
                       {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#info-warehouse{{ $warehouse->ma_vat_tu }}" type="submit" class="btn btn-info btn-icon"><i class="fas fa-eye"></i></a> --}}
                       <div class="btn-icon btn">

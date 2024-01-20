@@ -137,16 +137,16 @@ class VihicleController extends Controller
             'khoi_luong_keo_theo' => $request->khoi_luong_keo_theo,
             'so_nguoi_cho' => $request->so_nguoi_cho,
             'loai_nhien_lieu' => $request->loai_nhien_lieu,
-            'hieu_luc_kiem_dinh' => $request->hieu_luc_kiem_dinh,
-            'hieu_luc_bhds' => $request->hieu_luc_bhds,
+            'hieu_luc_kiem_dinh' => Carbon::createFromFormat('d/m/Y', $request->hieu_luc_kiem_dinh)->format('Y-m-d'),
+            'hieu_luc_bhds' => Carbon::createFromFormat('d/m/Y', $request->hieu_luc_bhds)->format('Y-m-d'),
             'cong_ty_bhds' => $request->cong_ty_bhds,
-            'hieu_luc_bhvc' => $request->hieu_luc_bhvc,
+            'hieu_luc_bhvc' => !is_null($request->hieu_luc_bhvc) ? Carbon::createFromFormat('d/m/Y', $request->hieu_luc_bhvc)->format('Y-m-d') : null,
             'cong_ty_bhvc' => $request->cong_ty_bhvc,
-            'hieu_luc_ngan_hang' => $request->hieu_luc_ngan_hang,
+            'hieu_luc_ngan_hang' => !is_null($request->hieu_luc_ngan_hang) ? Carbon::createFromFormat('d/m/Y', $request->hieu_luc_ngan_hang)->format('Y-m-d') : null,
             'unit_id' => $request->unit_id,
             'dinh_muc_tb' => $request->dinh_muc_tb,
-            'ngay_mua' => $request->ngay_mua,
-            'ngay_ban' => $request->ngay_ban,
+            'ngay_mua' => Carbon::createFromFormat('d/m/Y', $request->ngay_mua)->format('Y-m-d'),
+            'ngay_ban' => !is_null($request->ngay_ban) ? Carbon::createFromFormat('d/m/Y', $request->ngay_mua)->format('Y-m-d') : null,
             'trang_thai' => $request->trang_thai
         ];
         $vihicle->update($arrayData);

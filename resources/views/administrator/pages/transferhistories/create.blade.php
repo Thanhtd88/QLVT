@@ -75,7 +75,7 @@
                                         <option value="1">(Thu hồi)</option>
                                     </select>
                                     @error('loai_bien_ban')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        <p style="color: red; font-size: 14px">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-12">
@@ -353,7 +353,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="taitrong" name="taitrong">
+                                                            <input type="text" id="taitrong">
                                                         </td>
                                                         <td>
                                                             <div class="input-group-prepend">
@@ -361,7 +361,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="loaithung" name="loaithung">
+                                                            <input type="text" id="loaithung">
                                                         </td>
                                                         <td>                                                        
                                                             <div class="input-group-prepend">
@@ -369,7 +369,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <input class="text-upper" type="text" id="nhanhieu" name="nhanhieu">
+                                                            <input class="text-upper" type="text" id="nhanhieu">
                                                         </td>
                                                     </tr>
                                                     
@@ -380,7 +380,7 @@
                                                             </div>
                                                         </td>
                                                         <td colspan="3">
-                                                            <input class="text-upper" type="text" id="sokhung" name="sokhung">
+                                                            <input class="text-upper" type="text" id="sokhung">
                                                         </td>
                                                         <td>                                                        
                                                             <div class="input-group-prepend">
@@ -388,7 +388,7 @@
                                                             </div>
                                                         </td>
                                                         <td colspan="3">
-                                                            <input class="text-upper" type="text" id="somay" name="somay">
+                                                            <input class="text-upper" type="text" id="somay">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -398,7 +398,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="namsx" name="namsx">
+                                                            <input type="text" id="namsx">
                                                         </td>
                                                         <td></td><td></td>
                                                         <td>                                                        
@@ -438,7 +438,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-center">
-                                                            <select name="cavet" id="cavet">
+                                                            <select id="cavet">
                                                                 <option value="0">Bản chính</option>
                                                                 <option value="1" selected>Bản sao</option>
                                                             </select>
@@ -451,7 +451,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-center">
-                                                            <select name="dangkiem" id="dangkiem">
+                                                            <select id="dangkiem">
                                                                 <option value="0" selected>Bản chính</option>
                                                                 <option value="1">Bản sao</option>
                                                             </select>
@@ -464,7 +464,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-center">
-                                                            <select name="bhds" id="bhds">
+                                                            <select id="bhds">
                                                                 <option value="0" selected>Bản chính</option>
                                                                 <option value="1">Bản sao</option>
                                                             </select>
@@ -477,7 +477,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-center">
-                                                            <select name="dkkd" id="dkkd">
+                                                            <select id="dkkd">
                                                                 <option value="0">Bản chính</option>
                                                                 <option value="1" selected>Bản sao</option>
                                                             </select>
@@ -490,7 +490,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-center">
-                                                            <select name="hopdong_vc" id="hopdong_vc">
+                                                            <select id="hopdong_vc">
                                                                 <option value="0">Bản chính</option>
                                                                 <option value="1" selected>Bản sao</option>
                                                             </select>
@@ -503,7 +503,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-center">
-                                                            <select name="hopdong_ld" id="hopdong_ld">
+                                                            <select id="hopdong_ld">
                                                                 <option value="0">Bản chính</option>
                                                                 <option value="1" selected>Bản sao</option>
                                                             </select>
@@ -516,7 +516,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-center">
-                                                            <select name="phuhieu" id="phuhieu">
+                                                            <select id="phuhieu">
                                                                 <option value="0" selected>Bản chính</option>
                                                                 <option value="1">Bản sao</option>
                                                             </select>
@@ -572,7 +572,7 @@
                                                     <tr class="input-trang-bi printer-hidden">
                                                         <td>
                                                             <div class="input-group-prepend">
-                                                                <select name="" id="new-trangbixe" class="form-group">
+                                                                <select id="new-trangbixe" class="form-group">
                                                                     <option value="">--- Lựa chọn ---</option>
                                                                     <option value="Bạt lót sàn">Bạt lót sàn</option>
                                                                     <option value="Pallet">Pallet</option>
@@ -624,7 +624,7 @@
                                                                 <option value="Tam giác phản quang">Tam giác phản quang</option>
                                                                 <option value="Túi y tế">Túi y tế</option>                                                        
                                                             </select> --}}
-                                                            <select class="form-control select2" style="" id="new-bhld" name="dongphuc">
+                                                            <select class="form-control select2" style="" id="new-bhld">
                                                                 <option value="" selected="selected">--Lựa chọn--</option>
                                                                 @foreach ($warehouses as $warehouse)
                                                                     <option value="{{ $warehouse->vat_tu }}">{{ $warehouse->vat_tu }}</option>
@@ -646,7 +646,7 @@
                                                                 <option value="43">43</option>                                                      
                                                             </select>
                                                         </td> --}}
-                                                        <td><input  class="text-center" id="new-bhld-qty" type="number" name="so_luong" value="1"></td>
+                                                        <td><input  class="text-center" id="new-bhld-qty" type="number" value="1"></td>
                                                         <td>
                                                             <button type="button" id="add_field_bao_ho"><i class="fas fa-plus"></i></button>
                                                         </td>

@@ -91,7 +91,7 @@ class PersonalController extends Controller
             'unit_id' => $request->unit_id,
             'project_id' => $request->project_id,
             'ngay_vao' => $ngay_vao,
-            'trang_thai' => $request->trang_thai,
+            'trang_thai' => 0,
             'bhxh' => $request->bhxh
         ];
         $arrayData['image_url'] = $fileName;
@@ -146,7 +146,7 @@ class PersonalController extends Controller
         if(!is_null($request->ngay_nghi)){
             $ngay_nghi = Carbon::createFromFormat('d/m/Y', $request->ngay_nghi)->format('Y-m-d');
         }
-
+        
         if(!is_null($request->ngay_cap_gplx)){
             $ngay_gplx = Carbon::createFromFormat('d/m/Y', $request->ngay_cap_gplx)->format('Y-m-d');
             $nam = 5;
@@ -169,15 +169,15 @@ class PersonalController extends Controller
             'noi_cap_cccd' => $request->noi_cap_cccd,
             'gplx' => $request->gplx,
             'hang_gplx' => $request->hang_gplx,
-            'ngay_cap_gplx' => $ngay_gplx,
+            'ngay_cap_gplx' => $ngay_gplx ?? null,
             'noi_cap_gplx' => $request->noi_cap_gplx,
-            'hieu_luc_gplx' => $hieu_luc_gplx,
+            'hieu_luc_gplx' => $hieu_luc_gplx ?? null,
             'department_id' => $request->department_id,
             'unit_id' => $request->unit_id,
             'project_id' => $request->project_id,
             'ngay_vao' => $ngay_vao,
-            'ngay_nghi' => $ngay_nghi ?? null,
-            'trang_thai' => $request->ngay_nghi ? 1 : 0,
+            'ngay_nghi' => Carbon::createFromFormat('d/m/Y', $request->ngay_nghi)->format('Y-m-d') ?? null,
+            'trang_thai' => !is_null($request->ngay_nghi) ? 1 : 0,
             'bhxh' => $request->bhxh
         ];
         $fileName = $this->storeImage($request);
