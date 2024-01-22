@@ -20,9 +20,11 @@ class DieselController extends Controller
     {
         $diesels = Diesel::with('vihicle')
         ->with('personal')
+        ->orderBy('ngay_do', 'desc')
         ->get();
         if(Auth::user()->role == 1){
             $diesels = Diesel::with('vihicle')
+            ->orderBy('ngay_do', 'desc')
             ->with('personal')
             ->withTrashed()
             ->get();
@@ -49,6 +51,7 @@ class DieselController extends Controller
     {
         $ngay_truoc = Diesel::where('vihicle_id', $request->vihicle_id)->orderBy('ngay_do', 'desc')->first();        
         $ngay_do = Carbon::createFromFormat('d/m/Y H:i:s', $request->ngay_do)->format('Y-m-d H:i:s');
+        // dd($ngay_do);
         $warehouse = Warehouse::where('ma_vat_tu', 'DO001')->first();
         $thanh_tien = $warehouse->don_gia * $request->so_lit;
 
@@ -150,9 +153,9 @@ class DieselController extends Controller
                 $quang_duong = $request->odo - $odo_cu;
                 $dinh_muc = $request->so_lit / $quang_duong * 100;
             }
-            
             if(!is_null($ngay_truoc)){
                 $so_ngay = floor(abs(strtotime($request->ngay_do) - strtotime($ngay_truoc->ngay_do)) / (60*60*24));
+                
                 if($quang_duong / $so_ngay > 1300){
                     return redirect()->back()->with('msg', 'Số km bất thường. Kiểm tra lại số km hoặc số xe!');
                 }
@@ -173,7 +176,7 @@ class DieselController extends Controller
 
             $diesel->update($arrayData);
 
-            // xóa thông tin cũ trong warehouse và vihicle        
+            //xóa thông tin cũ trong warehouse và vihicle        
             $warehouse->tong_xuat -= $diesel->so_lit;
             $warehouse->ton_kho += $diesel->so_lit;
             $warehouse->save();
@@ -209,13 +212,11 @@ class DieselController extends Controller
         $warehouse->ton_kho += $diesel->so_lit;
         $warehouse->save();
 
-        
-        // dd($ngay_moi);
         if($diesel->ngay_do == $ngay_moi->ngay_do && $diesel->vihicle_id == $ngay_moi->vihicle_id){
             $vihicle = Vihicle::find($diesel->vihicle_id);
             $vihicle->odo -= $diesel->quang_duong;
             $vihicle->save();
-        }        
+        }
 
         return redirect()->route('admin.diesel.index')->with('msg', "Xóa thông tin đổ dầu thành công");
     }

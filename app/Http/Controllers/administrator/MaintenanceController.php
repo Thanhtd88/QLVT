@@ -19,11 +19,13 @@ class MaintenanceController extends Controller
     {
         $maintenances = Maintenance::with('vihicle')
         ->with('warehouse')
+        ->orderBy('ngay_thuc_hien', 'DESC')
         ->get();
         if(Auth::user()->role == 1){
             $maintenances = Maintenance::with('vihicle')
             ->with('warehouse')
             ->withTrashed()
+            ->orderBy('ngay_thuc_hien', 'DESC')
             ->get();
         }
         return view('administrator.pages.maintenance.index')->with('maintenances', $maintenances);

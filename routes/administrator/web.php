@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\administrator\AccountController;
 use App\Http\Controllers\administrator\DepartmentController;
 use App\Http\Controllers\administrator\DieselController;
 use App\Http\Controllers\administrator\MaintenanceController;
@@ -96,5 +97,11 @@ Route::middleware('check.login')->name('admin.')->group(function(){
     });
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::resource('account', AccountController::class)->middleware('check.admin');
+    Route::middleware('check.admin')->controller(AccountController::class)->group(function(){
+        Route::post('account/restore/{id}', 'restore')->name('account.restore');
+        Route::post('account/force-delete/{id}', 'forceDelete')->name('account.force.delete');
+    });
 });
 

@@ -36,11 +36,13 @@ class TransferHistoriesController extends Controller
 
         $transfers = TransferHistories::with('personal')
         ->with('vihicle')
+        ->orderBy('created_at', 'DESC')
         ->get();
         if(Auth::user()->role == 1){
             $transfers = TransferHistories::withTrashed()
             ->with('personal')
             ->with('vihicle')
+            ->orderBy('created_at', 'DESC')
             ->get();
         }
         

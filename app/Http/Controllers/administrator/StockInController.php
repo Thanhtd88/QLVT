@@ -19,11 +19,13 @@ class StockInController extends Controller
     {
         $stock_ins = StockIn::with('supplier')
         ->with('warehouse')
+        ->orderBy('ngay_nhap_kho', 'DESC')
         ->get();
         if(Auth::user()->role == 1){
             $stock_ins = StockIn::withTrashed()
             ->with('supplier')
             ->with('warehouse')
+            ->orderBy('ngay_nhap_kho', 'DESC')
             ->get();
         }
         

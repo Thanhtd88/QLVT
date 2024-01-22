@@ -36,49 +36,55 @@
                     <!-- small card -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>15<sup style="font-size: 20px"> xe</sup></h3>
+                            <h3>{{ $dang_kiem_count }}<sup style="font-size: 20px"> xe</sup></h3>
                             <p>Đến hạn đăng kiểm</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-truck"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#info-dang-kiem" type="submit" class="small-box-footer">
                             Chi tiết <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
+                
+                @include('administrator.pages.dashboard.inspection')
 
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>15<sup style="font-size: 20px"> xe</sup></h3>
+                            <h3>{{ $bao_hiem_count }}<sup style="font-size: 20px"> xe</sup></h3>
                             <p>Đến hạn bảo hiểm</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#info-bao-hiem" type="submit" class="small-box-footer">
                             Chi tiết <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
 
+                @include('administrator.pages.dashboard.insurance')
+
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>15<sup style="font-size: 20px"> xe</sup></h3>
+                            <h3>{{ $ngan_hang_count }}<sup style="font-size: 20px"> xe</sup></h3>
                             <p>Đến hạn ngân hàng</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-university"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#info-ngan-hang" type="submit" class="small-box-footer">
                             Chi tiết <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
+
+                @include('administrator.pages.dashboard.banking')
             </div>
 
             <div class="row">
@@ -118,21 +124,7 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Tháng', 'Chi phí'],
-            ['1',  1000],
-            ['2',  1170],
-            ['3',  660],
-            ['4',  1023000000],
-            ['5',  1030],
-            ['6',  1030],
-            ['7',  1030],
-            ['8',  1030],
-            ['9',  1030],
-            ['10',  1030],
-            ['11',  1030],
-            ['12',  1030]
-        ]);
+        var data = google.visualization.arrayToDataTable(@json($result));
 
         var options = {
             title: 'Chi phí sửa chửa xe',
@@ -144,5 +136,8 @@
 
         chart.draw(data, options);
     }
+    $(document).ready(function(){
+    $('.toast').toast('show');
+  });
 </script>
 @endsection

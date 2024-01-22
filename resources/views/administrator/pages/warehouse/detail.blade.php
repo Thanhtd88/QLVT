@@ -41,6 +41,7 @@
                                                 <span class="input-group-text">Thể loại</span>
                                             </div>
                                             <select class="custom-select" name="the_loai">
+                                                <option {{ old('trangthai') ?? $warehouse->the_loai == '' ? 'selected' : '' }} value="--Lựa chọn--"></option>
                                                 <option {{ old('trangthai') ?? $warehouse->the_loai == '0' ? 'selected' : '' }} value="0">Phụ tùng</option>
                                                 <option {{ old('trangthai') ?? $warehouse->the_loai == '1' ? 'selected' : '' }} value="1">Trang bị bảo hộ</option>
                                             </select>

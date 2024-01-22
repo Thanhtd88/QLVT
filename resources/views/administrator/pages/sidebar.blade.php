@@ -117,6 +117,18 @@
             </li>
           </ul>
         </li>
+        
+        @if (Auth::user()->role == 1)
+          <li class="nav-item has-treeview">
+            <a href="{{ route('admin.account.index') }}" class="nav-link sidebar-nav-link {{ Request::is('account*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Quản lý tài khoản
+              </p>
+            </a>
+          </li>
+        @endif
+        
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

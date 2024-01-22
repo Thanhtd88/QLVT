@@ -26,9 +26,14 @@ class PersonalController extends Controller
         // $direction = $sort === 'Mới nhất' ? "DESC" : "ASC";
         
         
-        $personals = Personal::with('project')->get();
+        $personals = Personal::with('project')
+        ->orderBy('ngay_vao', 'DESC')
+        ->get();
         if(Auth::user()->role == 1){
-            $personals = Personal::with('project')->withTrashed()->get();
+            $personals = Personal::with('project')
+            ->orderBy('ngay_vao', 'DESC')
+            ->withTrashed()
+            ->get();
         }
         
         // ->where('hoten', 'like', $keyword)

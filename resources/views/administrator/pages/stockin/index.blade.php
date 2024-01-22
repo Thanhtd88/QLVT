@@ -144,7 +144,7 @@
 
 
 @section('title')
-    Nhân sự
+    Nhập kho
 @endsection
 
 @section('js-custom')

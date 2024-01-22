@@ -65,7 +65,7 @@
                                         </div>
                                         <input id="email" class="form-control text-white" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Email"/>
                                     </div>
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-white" />
 
                                         
                                     <!-- Password -->
@@ -75,7 +75,7 @@
                                         </div>
                                         <input id="password" class="form-control text-white" type="password" name="password" required autocomplete="current-password" placeholder="Mật khẩu"/>
                                         </div>
-                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-white" />
                                     </div>
 
                                     <!-- Remember Me -->
@@ -129,7 +129,6 @@
                 password.setAttribute("type", type);
             });
         });
-
     </script>        
 </body>
 </html>

@@ -22,11 +22,17 @@ class VihicleController extends Controller
 
         $vihicles = Vihicle::with('personal')
         ->with('unit')
+        ->orderBy('loai_thung', 'DESC')
+        ->orderBy('nhan_hieu', 'DESC')
+        ->orderBy('khoi_luong_hang_hoa', 'DESC')
         ->get();
         if(Auth::user()->role == 1){
             $vihicles = Vihicle::with('personal')
             ->with('unit')
             ->withTrashed()
+            ->orderBy('loai_thung', 'DESC')
+            ->orderBy('nhan_hieu', 'DESC')
+            ->orderBy('khoi_luong_hang_hoa', 'DESC')
             ->get();
         }
 

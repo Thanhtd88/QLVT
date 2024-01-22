@@ -19,11 +19,13 @@ class ProtectionController extends Controller
     {
         $protections = Protection::with('warehouse')
         ->with('personal')
+        ->orderBy('ngay_ban_giao', 'DESC')
         ->get();
         if(Auth::user()->role == 1){
             $protections = Protection::with('warehouse')
             ->with('personal')
             ->withTrashed()
+            ->orderBy('ngay_ban_giao', 'DESC')
             ->get();
         }
         return view('administrator.pages.protection.index')->with('protections', $protections);
