@@ -43,6 +43,7 @@
                   <th>#</th>
                   <th>Ngày</th>
                   <th>Số xe</th>
+                  <th>Km</th>
                   <th>Vật tư thay thế</th>
                   <th>Số lượng</th>
                   <th>Đơn giá</th>
@@ -57,6 +58,7 @@
                     <td>{{ $loop->iteration}}</td>
                     <td>{{ date('d-m-Y', strtotime($maintenance->ngay_thuc_hien)) }}</td>
                     <td>{{ !is_null($maintenance->vihicle_id) ? $maintenance->vihicle->so_xe : '' }}</td>
+                    <td>{{ $maintenance->odo }}</td>
                     <td>{{ !is_null($maintenance->warehouse_id) ? $maintenance->warehouse->vat_tu : '' }}</td>
                     <td>{{ $maintenance->so_luong }}</td>
                     <td>{{ number_format($maintenance->don_gia) }}</td>

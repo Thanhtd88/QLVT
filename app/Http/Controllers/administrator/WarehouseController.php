@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\Warehouse\StoreRequest;
+use App\Http\Requests\Administrator\Warehouse\UpdateRequest;
 use App\Models\administrator\Supplier;
 use App\Models\administrator\Warehouse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class WarehouseController extends Controller
@@ -35,7 +36,7 @@ class WarehouseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         Warehouse::create([
             'the_loai' => $request->the_loai,
@@ -70,7 +71,7 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         $warehouse = Warehouse::find($id);
         $arrayData =[

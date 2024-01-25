@@ -49,9 +49,10 @@
                                         </div>
                                         <select class="custom-select" name="loai">
                                             <option value="">--Lựa chọn--</option>
-                                            <option value="0">Sửa chữa - Bảo dưỡng</option>
-                                            <option value="1">Bảo hiểm</option>
+                                            <option {{ old('loai') == 0 ? 'selected' : '' }} value="0">Sửa chữa - Bảo dưỡng</option>
+                                            <option {{ old('loai') == 1 ? 'selected' : '' }} value="1">Bảo hiểm</option>
                                         </select>
+                                        @error('loai') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
@@ -60,10 +61,11 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Ngày thực hiện</span>
                                             </div>
-                                            <input name="ngay_thuc_hien" type="text" value="{{ old('ngay_thuc_hien') }}" class="form-control datetimepicker-input" data-target="#ngay_thuc_hien" @error('ngay_thuc_hien') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                            <input name="ngay_thuc_hien" type="text" value="{{ old('ngay_thuc_hien') }}" class="form-control datetimepicker-input" data-target="#ngay_thuc_hien" />
                                             <div class="input-group-append" data-target="#ngay_thuc_hien" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
+                                            @error('ngay_thuc_hien') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
@@ -73,20 +75,21 @@
                                             <span class="input-group-text">Số xe</span>
                                         </div>
                                         <select class="form-control select2" name="vihicle_id">
-                                            <option selected="selected"></option>
+                                            <option value=""></option>
                                             @foreach ($vihicles as $vihicle)
                                                 <option value={{ $vihicle->id }}>{{ $vihicle->so_xe }}</option>
                                             @endforeach                                    
                                         </select>
-                                    </div>
-                                </div>
+                                    </div>                                    
+                                </div>@error('vihicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 <div class="box1 col-md-6">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Số km</span>
                                         </div>
-                                        <input type="number" class="form-control" name="odo">
+                                        <input type="number" class="form-control" name="odo" value="{{ old('odo') }}">
                                     </div>
+                                    @error('odo') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>
                                 <div class="box1 col-md-6">
                                     <div class="input-group mb-3 box-vihicle">
@@ -99,6 +102,7 @@
                                                 <option value={{ $warehouse->id }}>{{ $warehouse->vat_tu }}</option>
                                             @endforeach                                    
                                         </select>
+                                        @error('warehouse_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
@@ -106,7 +110,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Số lượng</span>
                                         </div>
-                                        <input type="number" class="form-control" name="so_luong">
+                                        <input type="number" class="form-control" name="so_luong" value="{{ old('so_luong') }}">
+                                        @error('so_luong') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>                                    
                                 </div>
                                 {{-- <div class="box1 col-md-6">

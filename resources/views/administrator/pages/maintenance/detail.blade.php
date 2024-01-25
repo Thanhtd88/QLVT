@@ -53,6 +53,7 @@
                                             <option {{ $maintenance->loai == 0 ? 'selected' : ''}} value="0">Sửa chữa - Bảo dưỡng</option>
                                             <option {{ $maintenance->loai == 1 ? 'selected' : ''}} value="1">Bảo hiểm</option>
                                         </select>
+                                        @error('loai') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
@@ -61,10 +62,11 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Ngày thực hiện</span>
                                             </div>
-                                            <input name="ngay_thuc_hien" type="text" value="{{ old('ngay_thuc_hien') ?? date('d-m-Y', strtotime($maintenance->ngay_thuc_hien)) }}" class="form-control datetimepicker-input" data-target="#ngay_thuc_hien" @error('ngay_thuc_hien') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                            <input name="ngay_thuc_hien" type="text" value="{{ old('ngay_thuc_hien') ?? date('d-m-Y', strtotime($maintenance->ngay_thuc_hien)) }}" class="form-control datetimepicker-input" data-target="#ngay_thuc_hien" />
                                             <div class="input-group-append" data-target="#ngay_thuc_hien" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
+                                            @error('ngay_thuc_hien') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
@@ -79,6 +81,7 @@
                                                 <option {{ $maintenance->vihicle_id == $vihicle->id ? 'selected' : '' }} value={{ $vihicle->id }}>{{ $vihicle->so_xe }}</option>
                                             @endforeach                                    
                                         </select>
+                                        @error('vihicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
@@ -87,6 +90,7 @@
                                             <span class="input-group-text">Số km</span>
                                         </div>
                                         <input value="{{ $maintenance->odo }}" type="number" class="form-control" name="odo">
+                                        @error('odo') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
@@ -100,6 +104,7 @@
                                                 <option {{ $maintenance->warehouse_id == $warehouse->id ? 'selected' : '' }} value={{ $warehouse->id }}>{{ $warehouse->vat_tu }}</option>
                                             @endforeach                                    
                                         </select>
+                                        @error('warehouse_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
@@ -108,6 +113,7 @@
                                             <span class="input-group-text">Số lượng</span>
                                         </div>
                                         <input value="{{ $maintenance->so_luong }}" type="number" class="form-control" name="so_luong">
+                                        @error('so_luong') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>                                    
                                 </div>
                                 {{-- <div class="box1 col-md-6">

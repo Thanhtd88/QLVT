@@ -20,17 +20,19 @@
                     <!-- small card -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>15<sup style="font-size: 20px"> xe</sup></h3>
+                            <h3>{{ $thay_nhot_count }}<sup style="font-size: 20px"> xe</sup></h3>
                             <p>Đến hạn thay nhớt</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-oil-can"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#info-thay-nhot" type="submit" class="small-box-footer">
                             Chi tiết <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>  
+
+                @include('administrator.pages.dashboard.oil_change')
                 
                 <div class="col-lg-3 col-6">
                     <!-- small card -->

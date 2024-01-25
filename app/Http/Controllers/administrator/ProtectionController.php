@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\Protection\StoreRequest;
+use App\Http\Requests\Administrator\Protection\UpdateRequest;
 use App\Models\administrator\Personal;
 use App\Models\administrator\Protection;
 use App\Models\administrator\Warehouse;
@@ -47,7 +49,7 @@ class ProtectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $ngay_ban_giao = Carbon::createFromFormat('d/m/Y', $request->ngay_ban_giao)->format('Y-m-d H:i:s');
         Protection::create([
@@ -90,7 +92,7 @@ class ProtectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         $protection = Protection::find($id);
         $warehouse = Warehouse::find($protection->warehouse_id);

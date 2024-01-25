@@ -22,7 +22,28 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'so_xe' => 'required|min:10|max:10',
+            'loai_thung' => 'required',
+            'nhan_hieu' => 'required',
+            'khoi_luong_hang_hoa' => 'required',
+            'hieu_luc_kiem_dinh' => 'required',
+            'unit_id' => 'required',
+            'ngay_mua' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'so_xe.required' => 'Bắt buộc',
+            'so_xe.min' => 'Phải có :min ký tự',
+            'so_xe.max' => 'Phải có :max ký tự',
+            'so_xe.unique' => 'Đã tồn tại',
+            'loai_thung.required' => 'Bắt buộc',
+            'nhan_hieu.required' => 'Bắt buộc',
+            'khoi_luong_hang_hoa.required' => 'Bắt buộc',
+            'hieu_luc_kiem_dinh.required' => 'Bắt buộc',
+            'unit_id.required' => 'Bắt buộc',
+            'ngay_mua.required' => 'Bắt buộc',
         ];
     }
 }

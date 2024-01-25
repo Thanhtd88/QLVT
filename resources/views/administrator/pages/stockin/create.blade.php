@@ -40,10 +40,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Ngày nhập kho</span>
                                                 </div>
-                                                <input name="ngay_nhap_kho" type="text" value="{{ old('ngay_nhap_kho') }}" class="form-control datetimepicker-input" data-target="#ngay_nhap_kho" @error('ngay_nhap_kho') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                                <input name="ngay_nhap_kho" type="text" value="{{ old('ngay_nhap_kho') }}" class="form-control datetimepicker-input" data-target="#ngay_nhap_kho"/>
                                                 <div class="input-group-append" data-target="#ngay_nhap_kho" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                                 </div>
+                                                @error('ngay_nhap_kho') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
@@ -58,9 +59,7 @@
                                                     <option value={{ $warehouse->id }}>{{ $warehouse->vat_tu }}</option>
                                                 @endforeach                                    
                                             </select>
-                                            @error('warehouse_id')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
+                                            @error('warehouse_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                     <div class="box1 col-md-6">
@@ -69,9 +68,7 @@
                                                 <span class="input-group-text">Số lượng</span>
                                             </div>
                                             <input type="number" class="form-control" id="name" name='so_luong_nhap' value="{{ old('so_luong_nhap') }}">
-                                            @error('so_luong_nhap')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
+                                            @error('so_luong_nhap') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                     <div class="box1 col-md-6">
@@ -80,9 +77,7 @@
                                                 <span class="input-group-text">Đơn giá</span>
                                             </div>
                                             <input type="number" class="form-control" id="name" name='don_gia_nhap' value="{{ old('don_gia_nhap') }}">
-                                            @error('don_gia_nhap')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
+                                            @error('don_gia_nhap') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                     <div class="box1 col-md-12">
@@ -96,9 +91,7 @@
                                                     <option value={{ $supplier->id }}>{{ $supplier->ten_ncc }}</option>
                                                 @endforeach                                    
                                             </select>
-                                            @error('the_loai')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
+                                            @error('supplier_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>                            

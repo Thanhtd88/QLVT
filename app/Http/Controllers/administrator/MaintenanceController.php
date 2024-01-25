@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\Maintenance\StoreRequest;
+use App\Http\Requests\Administrator\Maintenance\UpdateRequest;
 use App\Models\administrator\Maintenance;
 use App\Models\administrator\Vihicle;
 use App\Models\administrator\Warehouse;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MaintenanceController extends Controller
@@ -46,12 +47,16 @@ class MaintenanceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $warehouse = Warehouse::find($request->warehouse_id);
         if($warehouse->ton_kho < $request->so_luong){
-            return redirect()->route('admin.maintenance.create')->with('msg', 'Số lượng xuất lớn hơn số lượng tồn kho, vui lòng kiểm tra lại');
+            return redirect()->back()->with('msg', 'Số lượng xuất lớn hơn số lượng tồn kho, vui lòng kiểm tra lại');
         }
+        if($request->warehouse_id == 3 || $request->warehouse_id == 4 && is_null($request->odo)){
+            return redirect()->back()->with('msg', 'Xe thay nhớt phải nhập số km! Kiểm tra lại');
+        }
+
         $thanh_tien = $request->so_luong * $warehouse->don_gia;
         $ngay_thuc_hien = Carbon::createFromFormat('d/m/Y', $request->ngay_thuc_hien)->format('Y-m-d');
         Maintenance::create([
@@ -68,6 +73,12 @@ class MaintenanceController extends Controller
         $warehouse->tong_xuat += $request->so_luong;
         $warehouse->ton_kho -= $request->so_luong;
         $warehouse->save();
+
+        if($request->warehouse_id == 3 || $request->warehouse_id == 4){
+            $vihicle = Vihicle::find($request->vihicle_id);
+            $vihicle->odo_thay_nhot = $request->odo;
+            $vihicle->save();
+        }
 
         return redirect()->route('admin.maintenance.create')->with('msg', 'Lưu thông tin bảo dưỡng - sửa chữa thành công');
     }
@@ -97,7 +108,7 @@ class MaintenanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         $maintenance = Maintenance::find($id);
         $warehouse = Warehouse::find($maintenance->warehouse_id);
@@ -128,6 +139,12 @@ class MaintenanceController extends Controller
         $warehouse->ton_kho -= $request->so_luong;
         $warehouse->save();
 
+        if($request->warehouse_id == 3 || $request->warehouse_id == 4){
+            $vihicle = Vihicle::find($request->vihicle_id);
+            $vihicle->odo_thay_nhot = $request->odo;
+            $vihicle->save();
+        }
+
         return redirect()->route('admin.maintenance.index')->with('msg', 'Cập nhật thành công');
     }
 
@@ -143,6 +160,12 @@ class MaintenanceController extends Controller
         $warehouse->tong_xuat -= $maintenance->so_luong;
         $warehouse->ton_kho += $maintenance->so_luong;
         $warehouse->save();
+
+        if($maintenance->warehouse_id == 3 || $maintenance->warehouse_id == 4){
+            $vihicle = Vihicle::find($maintenance->vihicle_id);
+            // $vihicle->odo_thay_nhot = $maintenance->odo;
+            // $vihicle->save();
+        }
 
         return redirect()->route('admin.maintenance.index')->with('msg', "Xóa thông tin thành công");
     }

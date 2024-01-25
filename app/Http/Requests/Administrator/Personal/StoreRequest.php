@@ -40,30 +40,30 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'ma_nv.required' => 'Mã nhân viên không được để trống',
-            'ma_nv.min' => 'Mã nhân viên phải có :min ký tự',
-            'ma_nv.max' => 'Mã nhân viên phải có :max ký tự',
-            'ma_nv.unique' => 'Mã nhân viên đã tồn tại',
-            'ho_ten.required' => 'Tên nhân viên không được để trống',
+            'ma_nv.required' => 'Bắt buộc',
+            'ma_nv.min' => 'Độ dài bắt buộc :min ký tự',
+            'ma_nv.max' => 'Độ dài bắt buộc :max ký tự',
+            'ma_nv.unique' => 'Đã tồn tại',
+            'ho_ten.required' => 'Bắt buộc',
             'ho_ten.min' => 'Tên nhân viên phải có ít nhất :min ký tự',
             'ho_ten.max' => 'Tên nhân viên chỉ có nhiều nhất :max ký tự',
-            'ngay_sinh.required' => 'Ngày sinh không được để trống',
-            'sdt.required' => 'Số điện thoại không được để trống',
+            'ngay_sinh.required' => 'Bắt buộc',
+            'sdt.required' => 'Bắt buộc',
             'sdt.min' => 'Số điện thoại phải có ít nhất :min ký tự',
             'sdt.max' => 'Số điện thoại chỉ có nhiều nhất :max ký tự',
-            'dia_chi.required' => 'Địa chỉ không được để trống',
+            'dia_chi.required' => 'Bắt buộc',
             'dia_chi.max' => 'Địa chỉ chỉ có nhiều nhất :max ký tự',
-            'cccd.required' => 'CCCD không được để trống',
+            'cccd.required' => 'Bắt buộc',
             'cccd.min' => 'CCCD phải có ít nhất :min ký tự',
             'cccd.max' => 'CCCD chỉ có nhiều nhất :max ký tự',
             'cccd.unique' => 'Số CCCD đã tồn tại',
-            'ngay_cap_cccd.required' => 'Ngày cấp CCCD không được để trống',
-            'noi_cap_cccd.required' => 'Nơi cấp CCCD không được để trống',
+            'ngay_cap_cccd.required' => 'Bắt buộc',
+            'noi_cap_cccd.required' => 'Bắt buộc',
             'noi_cap_cccd.max' => 'Nơi cấp CCCD chỉ có nhiều nhất :max ký tự',
             'gplx.unique' => 'Số GPLX đã tồn tại',
-            'ngay_vao.required' => 'Ngày vào làm không được để trống',
-            'department_id.required' => 'Phòng ban không được để trống',
-            'unit_id.required' => 'Đơn vị không được để trống'
+            'ngay_vao.required' => 'Bắt buộc',
+            'department_id.required' => 'Bắt buộc',
+            'unit_id.required' => 'Bắt buộc'
         ];
     }
 }

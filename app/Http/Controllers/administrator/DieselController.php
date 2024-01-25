@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\Diesel\StoreRequest;
+use App\Http\Requests\Administrator\Diesel\UpdateRequest;
 use App\Models\administrator\Diesel;
 use App\Models\administrator\Personal;
 use App\Models\administrator\Vihicle;
@@ -47,7 +49,7 @@ class DieselController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $ngay_truoc = Diesel::where('vihicle_id', $request->vihicle_id)->orderBy('ngay_do', 'desc')->first();        
         $ngay_do = Carbon::createFromFormat('d/m/Y H:i:s', $request->ngay_do)->format('Y-m-d H:i:s');
@@ -123,7 +125,7 @@ class DieselController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         $diesel = Diesel::find($id);
         $vihicle_cu = Vihicle::find($diesel->vihicle_id);

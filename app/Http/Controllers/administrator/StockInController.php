@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\StockIn\StoreRequest;
+use App\Http\Requests\Administrator\StockIn\UpdateRequest;
 use App\Models\administrator\StockIn;
 use App\Models\administrator\Supplier;
 use App\Models\administrator\Warehouse;
@@ -47,7 +49,7 @@ class StockInController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $ngay_nhap_kho = Carbon::createFromFormat('d/m/Y', $request->ngay_nhap_kho)->format('Y-m-d');
         $warehouse = Warehouse::find($request->warehouse_id);
@@ -96,7 +98,7 @@ class StockInController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         $stock_in = StockIn::find($id);
         $warehouse = Warehouse::find($request->warehouse_id);

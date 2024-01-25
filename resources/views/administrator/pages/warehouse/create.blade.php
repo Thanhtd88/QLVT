@@ -44,9 +44,7 @@
                                                 <option {{ old('trangthai') == '0' ? 'selected' : '' }} value="0">Phụ tùng</option>
                                                 <option {{ old('trangthai') == '1' ? 'selected' : '' }} value="1">Trang bị bảo hộ</option>
                                             </select>
-                                            @error('the_loai')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
+                                            @error('the_loai') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                     <div class="box1 col-md-12">
@@ -56,7 +54,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="name" name='ma_vat_tu' value="{{ old('ma_vat_tu') }}">
                                             @error('ma_vat_tu')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                                <span style="color: red; font-size: 14px">{{ ' *'.$message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -67,7 +65,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="name" name='vat_tu' value="{{ old('vat_tu') }}">
                                             @error('vat_tu')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                                <span style="color: red; font-size: 14px">{{ ' *'.$message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -78,7 +76,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="name" name='don_vi_tinh' value="{{ old('don_vi_tinh') }}">
                                             @error('don_vi_tinh')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                                <span style="color: red; font-size: 14px">{{ ' *'.$message }}</span>
                                             @enderror
                                         </div>
                                     </div>

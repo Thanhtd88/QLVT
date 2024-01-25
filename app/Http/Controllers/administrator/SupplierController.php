@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\Supplier\StoreRequest;
+use App\Http\Requests\Administrator\Supplier\UpdateRequest;
 use App\Models\administrator\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +35,7 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         Supplier::create([
             'ma_ncc' => $request->ma_ncc,
@@ -64,7 +66,7 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         $supplier = Supplier::find($id);
         $supplier->update([

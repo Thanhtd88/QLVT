@@ -45,11 +45,12 @@
                                 <div class="input-group mb-3">
                                     <label for="">Ngày cấp</label>
                                     <div class="input-group date reservationdate" id="ngay_ban_giao" data-target-input="nearest">                                        
-                                        <input name="ngay_ban_giao" type="text" class="form-control datetimepicker-input" data-target="#ngay_ban_giao" @error('ngay_ban_giao') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                        <input name="ngay_ban_giao" type="text" class="form-control datetimepicker-input" data-target="#ngay_ban_giao" value="{{ old('ngay_ban_giao') }}"/>
                                         <div class="input-group-append" data-target="#ngay_ban_giao" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                         </div>
                                     </div>
+                                    @error('ngay_ban_giao') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="personal_id">Người nhận</label>
@@ -59,9 +60,7 @@
                                             <option value={{ $personal->id }}>{{ $personal->ho_ten }}</option>
                                         @endforeach                                    
                                     </select>
-                                    @error('personal_id')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
+                                    @error('personal_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>  
                                 <div class="form-group">
                                     <label for="warehouse_id">Trang bị</label>
@@ -71,13 +70,12 @@
                                             <option value={{ $warehouse->id }}>{{ $warehouse->vat_tu }}</option>
                                         @endforeach                                    
                                     </select>
-                                    @error('warehouse_id')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
+                                    @error('warehouse_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="so_luong">Số lượng</label>
-                                    <input type="number" class="form-control" id="so_luong" name="so_luong">
+                                    <input type="number" class="form-control" id="so_luong" name="so_luong" value="{{ old('so_luong') }}">
+                                    @error('so_luong') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>                    
                             <!-- /.card-body --> 
                             <div class="card-footer">

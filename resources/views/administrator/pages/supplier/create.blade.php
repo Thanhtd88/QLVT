@@ -35,39 +35,31 @@
                         <div class="card-body style="display: block;"">    
                             <div class="row">
                                 <div class="box1 col-md-12">
-                                    @error('ma_ncc')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>                                            
-                                    @enderror
                                     <div class="form-group mb-3">
                                         <label>Mã nhà cung cấp</label>
                                         <input value="{{ old('ma_ncc') }}" type="text" class="form-control" name="ma_ncc" autofocus>
+                                        @error('ma_ncc') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-12">
-                                    @error('ten_ncc')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="form-group mb-3">
                                         <label>Tên nhà cung cấp</label>
                                         <input value="{{ old('ten_ncc') }}" type="text" class="form-control" name="ten_ncc">
+                                        @error('ten_ncc') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-12">
-                                    @error('dia_chi')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="form-group mb-3">
                                         <label>Địa chỉ</label>
                                         <input  value="{{ old('dia_chi') }}" type="text" class="form-control" name="dia_chi">
+                                        @error('dia_chi') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-12">
-                                    @error('sdt')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="form-group mb-3">
                                         <label>Điện thoại</label>
                                         <input  value="{{ old('sdt') }}" type="text" class="form-control" name="sdt">
+                                        @error('sdt') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                             </div>        

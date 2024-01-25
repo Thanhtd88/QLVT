@@ -49,15 +49,17 @@
                                         <option value="0">Bình Hòa</option>
                                         <option value="1">Đông Nhì</option>
                                     </select>
+                                    @error('noi_do') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div> 
                                 <div class="input-group mb-3">
                                     <label for="">Ngày đổ</label>
                                     <div class="input-group date reservationdate" id="ngay_do" data-target-input="nearest">                                        
-                                        <input name="ngay_do" type="text" class="form-control datetimepicker-input" data-target="#ngay_do" @error('ngay_do') placeholder="{{ $message }}" style="background: red;" @enderror/>
+                                        <input name="ngay_do" type="text" class="form-control datetimepicker-input" data-target="#ngay_do"/>
                                         <div class="input-group-append" data-target="#ngay_do" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                         </div>
                                     </div>
+                                    @error('ngay_do') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="vihicle_id">Số xe</label>
@@ -67,17 +69,17 @@
                                             <option value={{ $vihicle->id }}>{{ $vihicle->so_xe }}</option>
                                         @endforeach                                    
                                     </select>
-                                    @error('vihicle_id')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
+                                    @error('vihicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="km">Số km</label>
                                     <input type="number" class="form-control" id="km" name="odo">
+                                    @error('odo') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>   
                                 <div class="form-group">
                                     <label for="so_lit">Số lít đổ</label>
-                                    <input type="text" class="form-control" id="so_lit" name="so_lit" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*">
+                                    <input type="text" class="form-control" id="so_lit" name="so_lit">
+                                    @error('odo') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>  
                                 <div class="form-group mb-3">
                                     <label for="personal_id">Tài xế</label>
@@ -87,9 +89,7 @@
                                             <option value={{ $personal->id }}>{{ $personal->ho_ten }}</option>
                                         @endforeach                                    
                                     </select>
-                                    @error('personal_id')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
+                                    @error('personal_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>            
                             </div>                            
                             <!-- /.card-body --> 

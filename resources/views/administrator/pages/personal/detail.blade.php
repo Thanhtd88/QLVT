@@ -35,106 +35,88 @@
                         <div class="card-body style="display: block;"">    
                             <div class="row">
                                 <div class="box1 col-md-2">
-                                    @error('ma_nv')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>                                            
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-stream"></i></span>
                                         </div>
-                                        <input value="{{ old('manv') ?? $personal->ma_nv }}" type="number" class="form-control" placeholder="Mã nhân viên" name="ma_nv">
+                                        <input value="{{ old('ma_nv') ?? $personal->ma_nv }}" type="number" class="form-control" placeholder="Mã nhân viên" name="ma_nv">
+                                        @error('ma_nv') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    @error('ho_ten')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
-                                        <input value="{{ old('hoten') ?? $personal->ho_ten }}" type="text" class="form-control" placeholder="Họ tên" name="ho_ten">
+                                        <input value="{{ old('ho_ten') ?? $personal->ho_ten }}" type="text" class="form-control" placeholder="Họ tên" name="ho_ten">
+                                        @error('ho_ten') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-3">
-                                    @error('ngay_sinh')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group date reservationdate" id="ngaysinh" data-target-input="nearest">
                                             <div class="input-group-prepend" data-target="#ngaysinh" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fas fa-birthday-cake"></i></div>
                                             </div>
                                             <input name="ngay_sinh" type="text" value="{{ old('ngay_sinh')  ?? date("d-m-Y", strtotime($personal->ngay_sinh)) }}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                            @error('ngay_sinh') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="box1 col-md-3">
-                                    @error('sdt')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                         </div>
                                         <input value="{{ old('sdt') ?? $personal->sdt }}" type="text" class="form-control" placeholder="Số điện thoại" name="sdt">
+                                        @error('sdt') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-12">
-                                    @error('dia_chi')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                         </div>
                                         <input value="{{ old('dia_chi') ?? $personal->dia_chi }}" type="text" class="form-control" placeholder="Địa chỉ" name="dia_chi">
+                                        @error('dia_chi') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    @error('cccd')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                         </div>
                                         <input value="{{ old('cccd') ?? $personal->cccd }}" type="text" class="form-control" placeholder="Căn cước công dân" name="cccd">
+                                        @error('cccd') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    @error('ngay_cap_cccd')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group date reservationdate" id="ngaycap_cccd" data-target-input="nearest">
                                             <div class="input-group-prepend" data-target="#ngaycap_cccd" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
                                             <input name="ngay_cap_cccd" type="text" value="{{ old('ngay_cap_cccd') ?? date("d-m-Y", strtotime($personal->ngay_cap_cccd)) }}" class="form-control datetimepicker-input" data-target="#reservationdate-cccd"/>
+                                            @error('ngay_cap_cccd') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    @error('noi_cap_cccd')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                         </div>
                                         <input value="{{ old('noi_cap_cccd') ?? $personal->noi_cap_cccd }}" type="text" class="form-control" placeholder="Nơi cấp CCCD" name="noi_cap_cccd">
+                                        @error('noi_cap_cccd') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    @error('gplx')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                         </div>  
                                         <input value="{{ old('gplx') ?? $personal->gplx }}" type="text" class="form-control" placeholder="Số giấy phép lái xe" name="gplx">
+                                        @error('gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-2">
@@ -143,6 +125,7 @@
                                             <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                                         </div>
                                         <input value="{{ old('hang_gplx') ?? $personal->hang_gplx }}" type="text" class="form-control" placeholder="Hạng bằng lái" name="hang_gplx">
+                                        @error('hang_gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-3">
@@ -152,18 +135,17 @@
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
                                             <input name="ngay_cap_gplx" type="text" value="{{ old('ngay_cap_gplx') ?? !is_null($personal->ngay_cap_gplx) ? date("d-m-Y", strtotime($personal->ngay_cap_gplx)) : '' }}" class="form-control datetimepicker-input" data-target="#reservationdate-cccd" placeholder="Ngày cấp GPLX"/>
+                                            @error('ngay_cap_gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="box1 col-md-3">
-                                    @error('noi_cap_gplx')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                         </div>
                                         <input value="{{ old('noi_cap_gplx') ?? $personal->noi_cap_gplx }}" type="text" class="form-control" placeholder="Nơi cấp GPLX" name="noi_cap_gplx">
+                                        @error('noi_cap_gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-12">    
@@ -172,12 +154,10 @@
                                             <span class="input-group-text"><i class="far fa-image"></i></span>
                                         </div>
                                         <input type="file" class="form-control" name="image_url">
+                                        @error('image_url') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">    
-                                    @error('department_id')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-building"></i></span>
@@ -188,12 +168,10 @@
                                                 <option {{ old('department_id') ?? $personal->department_id == $department->id ? 'selected' : '' }} value="{{ $department->id }}">{{ $department->phong_ban }}</option>  
                                             @endforeach                                                
                                         </select>
+                                        @error('department_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    @error('unit_id')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-circle nav-icon"></i></span>
@@ -204,6 +182,7 @@
                                                 <option {{ old('unit_id') ?? $personal->unit_id == $unit->id ? 'selected' : '' }} value="{{ $unit->id }}">{{ $unit->don_vi }}</option>  
                                             @endforeach  
                                         </select>
+                                        @error('unit_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
@@ -217,6 +196,7 @@
                                                 <option {{ old('project_id') ?? $personal->project_id == $project->id ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->du_an }}</option>  
                                             @endforeach
                                         </select>
+                                        @error('project_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
@@ -229,6 +209,7 @@
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
                                             <input name="ngay_vao" type="text" value="{{ old('ngay_vao')  ?? date("d-m-Y", strtotime($personal->ngay_vao)) }}" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Ngày vào làm"/>
+                                            @error('ngay_vao') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
@@ -239,6 +220,7 @@
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
                                             <input name="ngay_nghi" type="text" value="{{ old('ngay_nghi')  ?? $personal->ngay_nghi ? date("d-m-Y", strtotime($personal->ngay_nghi)) : null }}" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Ngày nghỉ"/>
+                                            @error('ngay_nghi') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
                                     </div>
                                 </div>

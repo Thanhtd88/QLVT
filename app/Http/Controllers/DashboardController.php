@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\administrator\Maintenance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index() {
-        $dang_kiem_vihicles = DB::select('SELECT *, DATEDIFF(hieu_luc_kiem_dinh, CURDATE()) as tg_con_lai FROM vihicle WHERE DATEDIFF(hieu_luc_kiem_dinh, CURDATE()) < 15;');
+        
+        $thay_nhot_vihicles = DB::select('SELECT *, dinh_muc_thay_nhot - (odo - odo_thay_nhot)  as quang_duong_con_lai FROM vihicle WHERE dinh_muc_thay_nhot - (odo - odo_thay_nhot) < 900  AND dinh_muc_thay_nhot - (odo - odo_thay_nhot) > -10000 ORDER BY quang_duong_con_lai ASC;');
+        $thay_nhot_count = count($thay_nhot_vihicles);
+
+        $dang_kiem_vihicles = DB::select('SELECT *, DATEDIFF(hieu_luc_kiem_dinh, CURDATE()) as tg_con_lai FROM vihicle WHERE DATEDIFF(hieu_luc_kiem_dinh, CURDATE()) < 15 ORDER BY tg_con_lai ASC;');
         $dang_kiem_count = count($dang_kiem_vihicles);
 
-        $bao_hiem_vihicles = DB::select('SELECT *, DATEDIFF(hieu_luc_bhds, CURDATE()) as tg_con_lai FROM vihicle WHERE DATEDIFF(hieu_luc_bhds, CURDATE()) < 15;');
+        $bao_hiem_vihicles = DB::select('SELECT *, DATEDIFF(hieu_luc_bhds, CURDATE()) as tg_con_lai FROM vihicle WHERE DATEDIFF(hieu_luc_bhds, CURDATE()) < 15 ORDER BY tg_con_lai ASC;');
         $bao_hiem_count = count($bao_hiem_vihicles);
 
-        $ngan_hang_vihicles = DB::select('SELECT *, DATEDIFF(hieu_luc_ngan_hang, CURDATE()) as tg_con_lai FROM vihicle WHERE DATEDIFF(hieu_luc_ngan_hang, CURDATE()) < 15;');
+        $ngan_hang_vihicles = DB::select('SELECT *, DATEDIFF(hieu_luc_ngan_hang, CURDATE()) as tg_con_lai FROM vihicle WHERE DATEDIFF(hieu_luc_ngan_hang, CURDATE()) < 15 ORDER BY tg_con_lai ASC;');
         $ngan_hang_count = count($ngan_hang_vihicles);
 
         $datas = DB::table('maintenance')
@@ -36,6 +41,8 @@ class DashboardController extends Controller
         ->with('bao_hiem_vihicles', $bao_hiem_vihicles)
         ->with('bao_hiem_count', $bao_hiem_count)
         ->with('ngan_hang_vihicles', $ngan_hang_vihicles)
-        ->with('ngan_hang_count', $ngan_hang_count);
+        ->with('ngan_hang_count', $ngan_hang_count)
+        ->with('thay_nhot_vihicles', $thay_nhot_vihicles)
+        ->with('thay_nhot_count', $thay_nhot_count);
     }
 }
