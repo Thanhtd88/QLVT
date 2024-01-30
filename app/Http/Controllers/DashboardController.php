@@ -29,13 +29,24 @@ class DashboardController extends Controller
         ->get();
 
         $result = [];
-        $result[] = ['Tháng', 'Chi phí'];
+        $result[] = ['Tháng', 'Tổng'];
         foreach ($datas as $data){
             $result[] = [ucfirst($data->monthYear), $data->total];
         }
 
+        $month_result = [];
+        foreach ($datas as $data){
+            $month_result[] = $data->monthYear;
+        }
+        $total_result = [];
+        foreach ($datas as $data){
+            $total_result[] = $data->total;
+        }
+
         return view('administrator.pages.dashboard.dashboard')
         ->with('result', $result)
+        ->with('month_result', $month_result)
+        ->with('total_result', $total_result)
         ->with('dang_kiem_vihicles', $dang_kiem_vihicles)
         ->with('dang_kiem_count', $dang_kiem_count)
         ->with('bao_hiem_vihicles', $bao_hiem_vihicles)

@@ -22,11 +22,11 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ma_vat_tu' => 'required|unique:warehouse,ma_vat_tu',
-            'vat_tu' => 'required',
-            'don_vi_tinh' => 'required',
-            'the_loai ' => 'required',
-            'supplier_id  ' => 'required',
+            // 'ma_vat_tu' => 'required|unique:warehouse,ma_vat_tu',
+            // 'vat_tu' => 'required',
+            // 'don_vi_tinh' => 'required',
+            // 'the_loai ' => 'required',
+            // 'supplier_id  ' => 'required',
         ];
     }
     public function messages()

@@ -34,14 +34,12 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tenpb">Tên dự án</label>
-                                    <input type="text" class="form-control" id="name" name='du_an' value="{{ old('du_an') }}">
-                                    @error('du_an')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
+                                    <x-text-input id="name" type="text" class="form-control" :errors="$errors" name="du_an" :value="old('du_an')" required />
+                                    <x-input-error :messages="$errors->get('du_an')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="slug">Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug">
+                                    <input type="text" class="form-control" id="slug" name="slug" readonly>
                                 </div>          
                                 @csrf              
                             </div>                            

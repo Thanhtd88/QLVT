@@ -12,6 +12,7 @@ class Department extends Model
 
     protected $table = 'department';
     protected $fillable = ['phong_ban', 'slug'];
+    
     public function personals() {
         return $this->hasMany(Personal::class, 'department_id');
     }

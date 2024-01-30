@@ -92,7 +92,10 @@
 <script src="{{ asset('administrator/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('administrator/dist/js/demo.js')}}"></script>
-
+<!-- ChartJS -->
+<script src="{{ asset('administrator/plugins/chart.js/Chart.min.js')}}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ asset('administrator/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- DataTables -->
 <script src="{{ asset('administrator/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('administrator/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -100,6 +103,7 @@
 <script src="{{ asset('administrator/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <!-- Google Chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 @yield('js-custom')
 </body>
 </html>

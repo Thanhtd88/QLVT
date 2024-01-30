@@ -10,6 +10,15 @@
     </div>
   </div>
 @endif
+@error('import_file') 
+  <div class="position-fixed top-0 right-0 p-3" style="z-index: 9; right: 35%; top: 10;">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="0">
+      <div class="toast-body alert-warning">
+        {{ $message }}
+      </div>
+    </div>
+  </div>
+@enderror
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -19,8 +28,11 @@
           <h1>Nhân sự</h1>
         </div>
         <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.personal.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a></li>              
+          <ol class="breadcrumb float-sm-right">   
+            <a href="{{ route('admin.personal.create') }}" style="margin-right: 5px" class="btn btn-primary text-sm"><i class="fas fa-plus"></i></a>
+            <a href="#" style="margin-right: 5px" data-bs-toggle="modal" data-bs-target="#import-personal" class="btn btn-danger text-sm"><i class="fas fa-upload"></i></a>  
+            <a href="{{ route('admin.personal.export') }}" class="btn btn-success text-sm"><i class="fas fa-download"></i></a>  
+            @include('administrator.pages.personal.import')  
           </ol>
         </div>
       </div>      
@@ -46,6 +58,7 @@
                   <th>Số điện thoại</th>
                   <th>Số xe phụ trách</th>
                   <th>Dự án</th>
+                  <th>Phòng ban</th>
                   <th>Trạng thái</th>
                   <th>Thao tác</th>
                 </tr>
@@ -59,6 +72,7 @@
                     <td>{{ $personal->sdt }}</td>
                     <td>{{ !is_null($personal->vihicle_id) ? $personal->vihicle->so_xe : '' }}</td>
                     <td>{{ !is_null($personal->project_id) ? $personal->project->du_an : '' }}</td>
+                    <td>{{ !is_null($personal->department_id) ? $personal->department->phong_ban : '' }}</td>
                     <td>{{ $personal->trang_thai === 0 ? 'Đang làm' : 'Nghỉ việc' }}</td>
                     <td>
                       <a href="#" data-bs-toggle="modal" data-bs-target="#info-personal{{ $personal->id }}" type="submit" class="btn btn-info btn-icon"><i class="fas fa-eye"></i></a>
@@ -151,14 +165,14 @@
 
 @section('js-custom')
 <script>
-  $(document).ready(function(){
-    $('.toast').toast('show');
-  });
   $(function () {
+    $('.toast').toast('show');
+
     $("#personal").DataTable({
       "responsive": true,
       "autoWidth": false,
     });
   });
+
 </script>
 @endsection

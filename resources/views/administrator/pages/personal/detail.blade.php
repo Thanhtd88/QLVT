@@ -256,7 +256,7 @@
 <script>
     $(function () {
         $('.reservationdate').datetimepicker({
-        format: 'DD/MM/YYYY H:m:s'
+        format: 'DD/MM/YYYY'
     });
     })
 </script>

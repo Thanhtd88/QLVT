@@ -4,7 +4,7 @@
 @if (session('msg'))
   <div class="position-fixed top-0 right-0 p-3" style="z-index: 9; right: 35%; top: 10;">
     <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="0">
-        <div class="toast-body alert-success">
+        <div class="toast-body alert-light">
             {{ session('msg') }}
         </div>
     </div>

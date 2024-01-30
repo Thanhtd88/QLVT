@@ -14,7 +14,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
-        body{background-attachment: fixed!important; background-repeat: no-repeat!important; background-position: center!important; background-size: cover!important; background: url('{{ asset('administrator/dist/img/background.jpg') }}')}
+        body{background-attachment: fixed!important; background-repeat: no-repeat!important; background-position: center!important; background-size: cover!important; background: url('{{ asset('administrator/dist/img/background.png') }}')}
         .content-wrapper{background: none!important; overflow: hidden}
         .main-footer{margin: 0!important; background: #343a40}
     </style>

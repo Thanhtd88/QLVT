@@ -95,7 +95,7 @@
                         <div class="card-header bg-gradient-info">
                             <h3 class="card-title">
                                 <i class="fas fa-chart-pie mr-1"></i>
-                                Chi phí
+                                Chi phí bảo dưỡng - sửa chữa
                             </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -105,7 +105,10 @@
                         <div class="card-body">
                             <div class="tab-content p-0">
                                 <!-- Morris chart - Sales -->
-                                <div id="curve_chart" style="position: relative; width: 900px; height: 500px; margin: auto;"></div>
+                                <div class="chart tab-pane active" id="chart_div" style="position: relative; width: 100%; height: 500px;"></div>
+                                {{-- <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+                                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>                         
+                                </div> --}}
                             </div>
                         </div><!-- /.card-body -->
                     </div>
@@ -123,23 +126,72 @@
 @section('js-custom')
 <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
+      function drawChart() {
         var data = google.visualization.arrayToDataTable(@json($result));
 
         var options = {
-            title: 'Chi phí sửa chửa xe',
-            curveType: 'function',
-            legend: { position: 'bottom' }
+          title: '',
+          hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-    }
+      }
     $(document).ready(function(){
-    $('.toast').toast('show');
-  });
+        $('.toast').toast('show');
+    });
+    
+    // $(function () {
+    //     /* Chart.js Charts */
+    //     // Sales chart
+    //     var salesChartCanvas = document.getElementById('revenue-chart-canvas').getContext('2d');
+    //     //$('#revenue-chart').get(0).getContext('2d');
+
+    //     var salesChartData = {
+    //         labels  : @json($month_result),
+    //         datasets: [{
+    //             label               : 'Tổng',
+    //             backgroundColor     : 'rgba(60,141,188,0.9)',
+    //             borderColor         : 'rgba(60,141,188,0.8)',
+    //             pointRadius          : true,
+    //             pointColor          : '#3b8bba',
+    //             pointStrokeColor    : 'rgba(60,141,188,1)',
+    //             pointHighlightFill  : '#fff',
+    //             pointHighlightStroke: 'rgba(60,141,188,1)',
+    //             data                : @json($total_result),
+    //         }]
+    //     }
+
+    //     var salesChartOptions = {
+    //         maintainAspectRatio : false,
+    //         responsive : true,
+    //         legend: {
+    //             display: false
+    //         },
+    //         scales: {
+    //             xAxes: [{
+    //                 gridLines : {
+    //                 display : false,
+    //                 }
+    //             }],
+    //             yAxes: [{
+    //                 gridLines : {
+    //                 display : false,
+    //                 }
+    //             }]
+    //         }
+    //     }
+
+    //     // This will get the first returned node in the jQuery collection.
+    //     var salesChart = new Chart(salesChartCanvas, { 
+    //             type: 'line', 
+    //             data: salesChartData, 
+    //             options: salesChartOptions
+    //         }
+    //     )
+    // })
 </script>
 @endsection

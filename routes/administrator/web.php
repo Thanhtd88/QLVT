@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\PersonalExport;
 use App\Http\Controllers\administrator\AccountController;
 use App\Http\Controllers\administrator\DepartmentController;
 use App\Http\Controllers\administrator\DieselController;
@@ -14,7 +15,9 @@ use App\Http\Controllers\administrator\UnitController;
 use App\Http\Controllers\administrator\VihicleController;
 use App\Http\Controllers\administrator\WarehouseController;
 use App\Http\Controllers\DashboardController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::middleware('check.login')->name('admin.')->group(function(){
 
@@ -41,6 +44,8 @@ Route::middleware('check.login')->name('admin.')->group(function(){
     Route::controller(PersonalController::class)->group(function(){
         Route::post('personal/restore/{id}', 'restore')->name('personal.restore');
         Route::post('personal/force-delete/{id}', 'forceDelete')->name('personal.force.delete');
+        Route::post('personal/import', 'importExcelData')->name('personal.import');
+        Route::get('export-personal-data', 'exportPersonalData')->name('personal.export');
     });
 
     Route::resource('project', ProjectController::class);
@@ -103,5 +108,13 @@ Route::middleware('check.login')->name('admin.')->group(function(){
         Route::post('account/restore/{id}', 'restore')->name('account.restore');
         Route::post('account/force-delete/{id}', 'forceDelete')->name('account.force.delete');
     });
+
+    // Route::get('test/export', function(){
+    //     $time = Carbon::now()->format('Ymd_His');
+
+    //     $fileName = "ds_nhan_vien_$time.xlsx";
+
+    //     return Excel::download(new PersonalExport, $fileName);
+    // })->name('export.excel');
 });
 

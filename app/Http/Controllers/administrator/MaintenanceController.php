@@ -80,7 +80,7 @@ class MaintenanceController extends Controller
             $vihicle->save();
         }
 
-        return redirect()->route('admin.maintenance.create')->with('msg', 'Lưu thông tin bảo dưỡng - sửa chữa thành công');
+        return redirect()->route('admin.maintenance.create')->with('msg', 'Lưu thông tin thành công');
     }
 
     /**

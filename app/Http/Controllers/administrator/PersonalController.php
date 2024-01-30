@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\administrator;
 
+use App\Exports\PersonalExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administrator\Personal\StoreRequest;
 use App\Http\Requests\Administrator\Personal\UpdateRequest;
+use App\Imports\PersonalImport;
 use App\Models\administrator\Department;
 use App\Models\administrator\Personal;
 use App\Models\administrator\Project;
@@ -12,6 +14,9 @@ use App\Models\administrator\Unit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+
+use function Laravel\Prompts\alert;
 
 class PersonalController extends Controller
 {
@@ -27,10 +32,12 @@ class PersonalController extends Controller
         
         
         $personals = Personal::with('project')
+        ->with('department')
         ->orderBy('ngay_vao', 'DESC')
         ->get();
         if(Auth::user()->role == 1){
             $personals = Personal::with('project')
+            ->with('department')
             ->orderBy('ngay_vao', 'DESC')
             ->withTrashed()
             ->get();
@@ -40,7 +47,7 @@ class PersonalController extends Controller
         // ->orWhere('manv', 'like', $keyword)
         // ->orderBy('created_at', $direction)
         // ->paginate(10);
-        return view('administrator.pages.personal.index')->with('personals', $personals); //compact('personals') dùng cho paginate
+        return view('administrator.pages.personal.index', compact('personals'));
     }   
 
     /**
@@ -181,7 +188,7 @@ class PersonalController extends Controller
             'unit_id' => $request->unit_id,
             'project_id' => $request->project_id,
             'ngay_vao' => $ngay_vao,
-            'ngay_nghi' => Carbon::createFromFormat('d/m/Y', $request->ngay_nghi)->format('Y-m-d') ?? null,
+            'ngay_nghi' => !is_null($request->ngay_nghi) ? Carbon::createFromFormat('d/m/Y', $request->ngay_nghi)->format('Y-m-d') : null,
             'trang_thai' => !is_null($request->ngay_nghi) ? 1 : 0,
             'bhxh' => $request->bhxh
         ];
@@ -219,4 +226,26 @@ class PersonalController extends Controller
         return redirect()->route('admin.personal.index')->with('msg', "Xóa nhân viên $personal->ho_ten khỏi hệ thành công");
     }
 
-}
+    public function importExcelData(Request $request)
+    {
+        $request->validate([
+            'import_file' => 'required|file|mimes:csv',                
+        ],
+        [
+            'import_file.required' => 'Bắt buộc',
+            'import_file.file' => 'Chỉ upload file',
+            'import_file.mimes' => 'Upload thất bại! Chỉ up file csv',
+        ]);
+        Excel::import(new PersonalImport, $request->file('import_file'));
+
+        return redirect()->route('admin.personal.index')->with('msg', 'Up file thành công');
+    }    
+
+    public function exportPersonalData(){
+        $time = Carbon::now()->format('Ymd_His');
+
+        $fileName = "ds_nhan_vien_$time.xlsx";
+
+        return Excel::download(new PersonalExport, $fileName);
+    }
+ }

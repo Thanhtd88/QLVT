@@ -22,12 +22,12 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ngay_thuc_hien' => 'required',
-            'so_luong' => 'required',
-            'nhan_hieu' => 'required',
-            'vihicle_id ' => 'required',
-            'warehouse_id ' => 'required',
-            'loai' => 'required',
+            // 'ngay_thuc_hien' => 'required',
+            // 'so_luong' => 'required',
+            // 'nhan_hieu' => 'required',
+            // 'vihicle_id ' => 'required',
+            // 'warehouse_id ' => 'required',
+            // 'loai' => 'required',
         ];
     }
     public function messages()
