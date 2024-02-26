@@ -30,18 +30,11 @@ class PersonalController extends Controller
         // $sort = $request->sort ?? 'Mới nhất';
         // $direction = $sort === 'Mới nhất' ? "DESC" : "ASC";
         
-        
         $personals = Personal::with('project')
         ->with('department')
         ->orderBy('ngay_vao', 'DESC')
+        ->withTrashed(Auth::user()->role == 1 ? true : false)
         ->get();
-        if(Auth::user()->role == 1){
-            $personals = Personal::with('project')
-            ->with('department')
-            ->orderBy('ngay_vao', 'DESC')
-            ->withTrashed()
-            ->get();
-        }
         
         // ->where('hoten', 'like', $keyword)
         // ->orWhere('manv', 'like', $keyword)
@@ -58,12 +51,12 @@ class PersonalController extends Controller
         $units = Unit::all();
         $projects = Project::all();
         $departments = Department::all();
-        // $vihicles = Vihicle::all();
+        // $vehicles = Vehicle::all();
         return view('administrator.pages.personal.create')
         ->with('units', $units)
         ->with('projects', $projects)
         ->with('departments', $departments);
-        // ->with('vihicles', $vihicles);
+        // ->with('vehicles', $vehicles);
     }
 
     /**
@@ -246,6 +239,6 @@ class PersonalController extends Controller
 
         $fileName = "ds_nhan_vien_$time.xlsx";
 
-        return Excel::download(new PersonalExport, $fileName);
+        return Excel::download(new PersonalExport(), $fileName);
     }
  }

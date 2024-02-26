@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\CustomerImport;
 use App\Imports\PersonalImport;
 use App\Models\administrator\Test;
+use App\Models\administrator\Vihicle;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -17,17 +18,18 @@ class TestController extends Controller
         return view('administrator.pages.test.index', compact('tests'));
     }
 
-    public function importExcelData(Request $request)
-    {
-        $request->validate([
-            'import_file' => [
-                'required',
-                'file'
-            ],
-        ]);
+    // public function importExcelData(Request $request)
+    // {
+    //     $request->validate([
+    //         'import_file' => [
+    //             'required',
+    //             'file'
+    //         ],
+    //     ]);
 
-        Excel::import(new PersonalImport, $request->file('import_file'));
+    //     Excel::import(new PersonalImport, $request->file('import_file'));
 
-        return redirect()->back()->with('status', 'Imported Successfully');
-    }
+    //     return redirect()->back()->with('status', 'Imported Successfully');
+    // }
+
 }

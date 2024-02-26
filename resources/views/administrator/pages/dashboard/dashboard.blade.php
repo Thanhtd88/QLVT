@@ -126,72 +126,24 @@
 @section('js-custom')
 <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+    function drawChart() {
         var data = google.visualization.arrayToDataTable(@json($result));
 
         var options = {
-          title: '',
-          hAxis: {title: '',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
+            title: '',
+            hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0}
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-      }
+    }
+
     $(document).ready(function(){
         $('.toast').toast('show');
     });
     
-    // $(function () {
-    //     /* Chart.js Charts */
-    //     // Sales chart
-    //     var salesChartCanvas = document.getElementById('revenue-chart-canvas').getContext('2d');
-    //     //$('#revenue-chart').get(0).getContext('2d');
-
-    //     var salesChartData = {
-    //         labels  : @json($month_result),
-    //         datasets: [{
-    //             label               : 'Tổng',
-    //             backgroundColor     : 'rgba(60,141,188,0.9)',
-    //             borderColor         : 'rgba(60,141,188,0.8)',
-    //             pointRadius          : true,
-    //             pointColor          : '#3b8bba',
-    //             pointStrokeColor    : 'rgba(60,141,188,1)',
-    //             pointHighlightFill  : '#fff',
-    //             pointHighlightStroke: 'rgba(60,141,188,1)',
-    //             data                : @json($total_result),
-    //         }]
-    //     }
-
-    //     var salesChartOptions = {
-    //         maintainAspectRatio : false,
-    //         responsive : true,
-    //         legend: {
-    //             display: false
-    //         },
-    //         scales: {
-    //             xAxes: [{
-    //                 gridLines : {
-    //                 display : false,
-    //                 }
-    //             }],
-    //             yAxes: [{
-    //                 gridLines : {
-    //                 display : false,
-    //                 }
-    //             }]
-    //         }
-    //     }
-
-    //     // This will get the first returned node in the jQuery collection.
-    //     var salesChart = new Chart(salesChartCanvas, { 
-    //             type: 'line', 
-    //             data: salesChartData, 
-    //             options: salesChartOptions
-    //         }
-    //     )
-    // })
 </script>
 @endsection

@@ -11,7 +11,7 @@
                         <form action="{{ route('admin.personal.import') }}" method="POST" enctype="multipart/form-data">
                             @csrf  
                             <div class="input-group">
-                                <x-text-input type="file" name="import_file" class="form-control" required/> 
+                                <x-text-input type="file" name="import_file" class="form-control" required accept='.csv'/> 
                                 <button style="margin: 0 5px" href="" type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Đồng ý</button>  
                             </div>
                         </form>

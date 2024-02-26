@@ -23,12 +23,18 @@ class StoreRequest extends FormRequest
     {
         return [
             'loai_bien_ban' => 'required',
+            'd_personal_id' => 'required',
+            'r_personal_id' => 'required',
+            'vihicle_id' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'loai_bien_ban.required' => 'Vui lòng chọn loại biên bản bàn giao',
+            'loai_bien_ban.required' => 'Vui lòng chọn loại biên bản',
+            'd_personal_id.required' => 'Vui lòng chọn người bàn giao',
+            'r_personal_id.required' => 'Vui lòng chọn người nhận bàn giao',
+            'vihicle_id.required' => 'Vui lòng chọn xe bàn giao',
         ];
     }
 }

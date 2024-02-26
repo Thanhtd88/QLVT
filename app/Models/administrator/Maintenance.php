@@ -14,8 +14,8 @@ class Maintenance extends Model
 
     protected $guarded = [];
 
-    public function vihicle() {
-        return $this->belongsTo(Vihicle::class, 'vihicle_id')->withTrashed();
+    public function vehicle() {
+        return $this->belongsTo(Vehicle::class, 'vehicle_id')->withTrashed();
     }
 
     public function warehouse() {

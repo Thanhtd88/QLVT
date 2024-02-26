@@ -62,14 +62,14 @@
                                     @error('ngay_do') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="vihicle_id">Số xe</label>
-                                    <select class="form-control select2" style="" id="vihicle_id" name="vihicle_id">
+                                    <label for="vehicle_id">Số xe</label>
+                                    <select class="form-control select2" style="" id="vehicle_id" name="vehicle_id">
                                         <option selected="selected"></option>
-                                        @foreach ($vihicles as $vihicle)
-                                            <option value={{ $vihicle->id }}>{{ $vihicle->so_xe }}</option>
+                                        @foreach ($vehicles as $vehicle)
+                                            <option value={{ $vehicle->id }}>{{ $vehicle->so_xe }}</option>
                                         @endforeach                                    
                                     </select>
-                                    @error('vihicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                    @error('vehicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="km">Số km</label>

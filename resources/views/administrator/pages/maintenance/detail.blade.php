@@ -44,7 +44,7 @@
                         <div class="card-body style="display: block;"">    
                             <div class="row">
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Hành động</span>
                                         </div>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="box1 col-md-6">
                                     <div class="input-group mb-3">
-                                        <div class="input-group date reservationdate" id="ngay_thuc_hien" data-target-input="nearest">
+                                        <div class="input-group date reservationdate input-group-sm" id="ngay_thuc_hien" data-target-input="nearest">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Ngày thực hiện</span>
                                             </div>
@@ -71,21 +71,21 @@
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3 box-vihicle">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Số xe</span>
                                         </div>
-                                        <select class="form-control select2" name="vihicle_id">
+                                        <select class="form-control select2" name="vehicle_id">
                                             <option selected="selected"></option>
-                                            @foreach ($vihicles as $vihicle)
-                                                <option {{ $maintenance->vihicle_id == $vihicle->id ? 'selected' : '' }} value={{ $vihicle->id }}>{{ $vihicle->so_xe }}</option>
+                                            @foreach ($vehicles as $vehicle)
+                                                <option {{ $maintenance->vehicle_id == $vehicle->id ? 'selected' : '' }} value={{ $vehicle->id }}>{{ $vehicle->so_xe }}</option>
                                             @endforeach                                    
                                         </select>
-                                        @error('vihicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        @error('vehicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Số km</span>
                                         </div>
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3 box-vihicle">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Vật tư thay thế</span>
                                         </div>
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Số lượng</span>
                                         </div>
@@ -128,7 +128,7 @@
                         </div>
                         <!-- /.card-body -->
       
-                        <div class="card-footer">
+                        <div class="card-footer btn-group-sm">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu</button>                            
                             <a href="{{ route('admin.maintenance.index') }}" class="btn btn-danger float-right"><i class="fas fa-times"></i> Thoát</a>
                         </div>

@@ -2,13 +2,7 @@
 
 @section('content')
 @if (session('msg'))
-  <div class="position-fixed top-0 right-0 p-3" style="z-index: 9; right: 35%; top: 10;">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="0">
-      <div class="toast-body alert-success">
-        {{ session('msg') }}
-      </div>
-    </div>
-  </div>
+  @include('administrator.pages.notification')
 @endif
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -20,7 +14,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.diesel.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a></li>              
+            <a href="{{ route('admin.diesel.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            <a href="" class="btn btn-success text-sm" style="margin-left: 5px"><i class="fas fa-download"></i></a>
           </ol>
         </div>
       </div>      
@@ -61,8 +56,8 @@
                     <td>{{ date('d-m-Y H:i:s', strtotime($diesel->ngay_do)) }}</td>
                     <td>{{ $diesel->noi_do == 0 ? 'Bình Hòa' : 'Đông Nhì' }}</td>
                     <td>{{ $diesel->odo }}</td>
-                    <td>{{ !is_null($diesel->vihicle_id) ? $diesel->vihicle->so_xe : '' }}</td>
-                    <td class="text-center">{{ !is_null($diesel->vihicle_id) ? $diesel->vihicle->loai_thung.' | '.number_format($diesel->vihicle->khoi_luong_hang_hoa/1000, 2) : '' }}</td>
+                    <td>{{ !is_null($diesel->vehicle_id) ? $diesel->vehicle->so_xe : '' }}</td>
+                    <td class="text-center">{{ !is_null($diesel->vehicle_id) ? $diesel->vehicle->loai_thung.' | '.number_format($diesel->vehicle->khoi_luong_hang_hoa/1000, 2) : '' }}</td>
                     <td>{{ $diesel->so_lit }}</td>
                     <td>{{ number_format($diesel->don_gia) }}</td>
                     <td>{{ number_format($diesel->thanh_tien) }}</td>
@@ -114,7 +109,7 @@
                               <button type="button" class="btn" data-bs-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"/></svg></button>
                             </div>
                             <div class="modal-body">
-                              Bạn muốn xóa thông tin đổ dầu xe {{ $diesel->vihicle->so_xe.' ngày '.$diesel->ngay_do }} {{ !is_null($diesel->deleted_at) ? 'khỏi hệ thống' : '' }}?
+                              Bạn muốn xóa thông tin đổ dầu xe {{ $diesel->vehicle->so_xe.' ngày '.$diesel->ngay_do }} {{ !is_null($diesel->deleted_at) ? 'khỏi hệ thống' : '' }}?
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button> 

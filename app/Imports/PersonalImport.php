@@ -21,24 +21,20 @@ class PersonalImport implements ToCollection, WithHeadingRow
             if($personal){
                 $personal->update([
                     'ho_ten' => $row['ho_ten'],
-                    'ngay_sinh' => Carbon::createFromFormat('d/m/Y', $row['ngay_sinh'])->format('Y-m-d'),
+                    'ngay_sinh' => !is_null($row['ngay_sinh']) ? Carbon::createFromFormat('d/m/Y', $row['ngay_sinh'])->format('Y-m-d') : null,
                     'sdt' => $row['sdt'],
                     'dia_chi' => $row['dia_chi'],
                     'cccd' => $row['cccd'],
-                    'ngay_cap_cccd' => Carbon::createFromFormat('d/m/Y', $row['ngay_cap_cccd'])->format('Y-m-d'),
+                    'ngay_cap_cccd' => !is_null($row['ngay_cap_cccd']) ? Carbon::createFromFormat('d/m/Y', $row['ngay_cap_cccd'])->format('Y-m-d') : null,
                     'noi_cap_cccd' => $row['noi_cap_cccd'],
                     'gplx' => $row['gplx'],
                     'hang_gplx' => $row['hang_gplx'],
                     'ngay_cap_gplx' => !is_null($row['ngay_cap_gplx']) ? Carbon::createFromFormat('d/m/Y', $row['ngay_cap_gplx'])->format('Y-m-d') : null,
                     'noi_cap_gplx' => $row['noi_cap_gplx'],
                     'hieu_luc_gplx' => !is_null($row['hieu_luc_gplx']) ? Carbon::createFromFormat('d/m/Y', $row['hieu_luc_gplx'])->format('Y-m-d') : null,
-                    // 'department_id' => $row['department_id'],
-                    // 'unit_id' => $row['unit_id '],
-                    // 'project_id' => $row['project_id'],
-                    'ngay_vao' => Carbon::createFromFormat('d/m/Y', $row['ngay_vao'])->format('Y-m-d'),
+                    'ngay_vao' => !is_null($row['ngay_vao']) ? Carbon::createFromFormat('d/m/Y', $row['ngay_vao'])->format('Y-m-d') : null,
                     'trang_thai' => $row['trang_thai'],
                     'bhxh' => $row['bhxh'],
-                    // 'updated_at' => Carbon::now(),
                 ]);
 
             }else{
@@ -56,13 +52,9 @@ class PersonalImport implements ToCollection, WithHeadingRow
                     'ngay_cap_gplx' => !is_null($row['ngay_cap_gplx']) ? Carbon::createFromFormat('d/m/Y', $row['ngay_cap_gplx'])->format('Y-m-d') : null,
                     'noi_cap_gplx' => $row['noi_cap_gplx'],
                     'hieu_luc_gplx' => !is_null($row['hieu_luc_gplx']) ? Carbon::createFromFormat('d/m/Y', $row['hieu_luc_gplx'])->format('Y-m-d') : null,
-                    // 'department_id' => $row['department_id'],
-                    // 'unit_id' => $row['unit_id'],
-                    // 'project_id' => $row['project_id'],
                     'ngay_vao' => Carbon::createFromFormat('d/m/Y', $row['ngay_vao'])->format('Y-m-d'),
                     'trang_thai' => $row['trang_thai'],
                     'bhxh' => $row['bhxh'],
-                    // 'created_at' => Carbon::now(),
                 ]);
             }
 

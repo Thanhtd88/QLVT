@@ -21,7 +21,7 @@ class AccountController extends Controller
     {
         $users = Account::withTrashed()->get();
         
-        return view('administrator.account.index')->with('users', $users);
+        return view('administrator.pages.account.index')->with('users', $users);
     }
 
     /**
@@ -29,7 +29,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('administrator.account.create');
+        //
     }
 
     /**
@@ -40,16 +40,18 @@ class AccountController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', 'min:6', 'max:255'],
         ],[
             'name.required' => 'Họ tên không được để trống',
-            'name.max' => 'Họ tên có độ dài tối đa tối đa :max là ký tự',
+            'name.max' => 'Họ tên có độ dài tối đa :max là ký tự',
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
-            'email.max' => 'Email có độ dài tối đa tối đa :max là ký tự',
+            'email.max' => 'Email có độ dài tối đa :max là ký tự',
             'email.unique' => 'Email đã tồn tại',
             'password.required' => 'Mật khẩu không được để trống',
-            'password.confirmed' => 'Mật khẩu xác nhận không đúng'
+            'password.confirmed' => 'Mật khẩu xác nhận không đúng',
+            'password.min' => 'Mật khẩu có độ dài tối thiểu :min là ký tự',
+            'password.max' => 'Mật khẩu có độ dài tối đa :max là ký tự',
         ]);
 
         $user = User::create([
@@ -58,12 +60,10 @@ class AccountController extends Controller
             'password' => Hash::make($request->password),
             'role' => 2,
         ]);
+        // dd($user);
+        $msg = $user ? 'Thêm mới thành công' : 'Thêm mới thất bại';
 
-        // event(new Registered($user));
-
-        // Auth::login($user);
-
-        return redirect()->route('admin.account.index')->with('msg', 'Tạo tài khoản mới thành công!');
+        return redirect()->back()->with('msg', $msg);
     }
 
     /**
@@ -90,23 +90,31 @@ class AccountController extends Controller
         //
     }
 
+    public function resetPassword(string $id) {
+        $user = User::find($id);
+        $default_password = "user123";
+        $user->password = Hash::make($default_password);
+        $user->save();       
+        return redirect()->back()->with('msg', 'Reset password thành công'); 
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {
         User::find($id)->delete();
-        return redirect()->route('admin.account.index')->with('msg', 'Xóa thành công');
+        return redirect()->back()->with('msg', 'Xóa thành công');
     }  
 
     public function restore($id) {
         $user = User::withTrashed()->find($id);
         $user->restore();
-        return redirect()->route('admin.account.index')->with('msg', 'Khôi phục thành công');
+        return redirect()->back()->with('msg', 'Khôi phục thành công');
     }
 
     public function forceDelete($id) {
         $user = User::withTrashed()->find($id);
         $user->forceDelete();
-        return redirect()->route('admin.account.index')->with('msg', 'Xóa khỏi hệ thành công');
+        return redirect()->back()->with('msg', 'Xóa khỏi hệ thành công');
     }
 }

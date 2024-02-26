@@ -2,13 +2,7 @@
 
 @section('content')
 @if (session('msg'))
-  <div class="position-fixed top-0 right-0 p-3" style="z-index: 9; right: 35%; top: 10;">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="0">
-      <div class="toast-body alert-success">
-        {{ session('msg') }}
-      </div>
-    </div>
-  </div>
+  @include('administrator.pages.notification')
 @endif
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -20,7 +14,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.protection.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a></li>              
+            <a href="{{ route('admin.protection.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            <a href="" class="btn btn-success text-sm" style="margin-left: 5px"><i class="fas fa-download"></i></a>              
           </ol>
         </div>
       </div>      

@@ -1,0 +1,43 @@
+body{
+    background-attachment: fixed!important; 
+    background-repeat: no-repeat!important; 
+    background-position: center!important; 
+    background-size: cover!important; 
+    background: url('../img/background.png');
+    z-index: -99;
+    position: relative;
+}
+.background-cont{
+    width: 400px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30vh;
+    left: 0;
+    z-index: -1;
+    > img{
+        width: 100%;
+        transform: scaleX(-1);
+    }
+}
+.background-line{
+    width: 100%;
+    position: absolute;
+    bottom: -20%;
+    z-index: -2;
+    > img{
+        width: 100%;
+    }
+}
+.login-content{
+    position: absolute;
+    left: 35%;
+    top: 30vh;
+}
+.content-wrapper{
+    background: none!important; 
+    overflow: hidden
+}
+.main-footer{
+    margin: 0!important; 
+    background: #343a40
+}

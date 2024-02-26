@@ -2,13 +2,7 @@
 
 @section('content')
 @if (session('msg'))
-  <div class="position-fixed top-0 right-0 p-3" style="z-index: 9; right: 35%; top: 10;">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="0">
-      <div class="toast-body alert-success">
-        {{ session('msg') }}
-      </div>
-    </div>
-  </div>
+  @include('administrator.pages.notification')
 @endif
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -20,7 +14,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.transfer.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a></li>              
+            <a href="{{ route('admin.transfer.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            <a href="" class="btn btn-success text-sm" style="margin-left: 5px"><i class="fas fa-download"></i></a>          
           </ol>
         </div>
       </div>      
@@ -34,13 +29,24 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Danh sách bàn giao</h3>
+              <div class="card-tools">
+                {{-- <form action="{{ route('admin.transfer.index') }}" method="get">
+                  <div class="input-group input-group-sm" style="width: 250px;">                  
+                    <input type="search" name="keyword" class="form-control float-right" placeholder="Số xe / Tài xế" value="{{ request()->get('keyword') }}" autocomplete="off">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-info bg-white"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </form> --}}
+              </div>
             </div>
             <!-- /.card-header -->
+            
             <div class="card-body">
-              <table id="transfer" class="table table-striped"> {{-- table-bordered --}}
+              <table id="transfer" class="table table-striped center table-sm">
                 <thead>
                 <tr>
-                  <th>#</th>
+                  <th class="text-center">#</th>
                   <th>Loại BB</th>
                   <th>Số BB</th>
                   <th>Ngày bàn giao</th>
@@ -70,7 +76,6 @@
                               @if ($transfer->trashed())
                                 <form action="{{ route('admin.transfer.restore', ['id' => $transfer->id]) }}" method="POST">
                                     @csrf
-                                    <div class="dropdown-divider"></div>
                                     <button type="submit" class="dropdown-item">
                                       <i class="fas fa-trash-restore mr-2"></i> Khôi phục
                                     </button>
@@ -80,10 +85,9 @@
                                   <i class="fas fa-ban"></i> Xóa vĩnh viễn
                                 </a>
                               @else
-                                {{-- <div class="dropdown-divider"></div>
-                                <a href="{{ route('admin.transfer.edit', ['transfer' => $transfer->id]) }}" type="submit" class="dropdown-item">
-                                  <i class="far fa-edit mr-2"></i> Chỉnh sửa
-                                </a> --}}
+                                <a href="{{ route('admin.transfer.printer') }}" type="submit" class="dropdown-item">
+                                  <i class="fas fa-print mr-2"></i> In biên bản
+                                </a> 
                                 <div class="dropdown-divider"></div>
                                 <a data-bs-toggle="modal" data-bs-target="#notification{{ $transfer->id }}" type="submit" class="dropdown-item">
                                   <i class="fas fa-trash mr-2"></i> Xóa
@@ -151,14 +155,12 @@
 
 @section('js-custom')
 <script>
-  $(document).ready(function(){
-    $('.toast').toast('show');
-  });
   $(function () {
-    $("#transfer").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
+    $('.toast').toast('show');
+
+    new DataTable('#transfer', {
+      responsive: true
+    });    
   });
 </script>
 @endsection

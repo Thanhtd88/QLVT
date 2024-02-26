@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="{{ route('admin.dashboard') }}" class="brand-link">
+  <a href="#" class="brand-link">
     <img src="{{ asset('administrator/dist/img/AdminBMTLogo.png') }}" alt="Logo" class="brand-image img-circle elevation-3">
     <span class="brand-text font-weight-light">Bình Minh Tải</span>
   </a>
@@ -10,8 +10,8 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-flat " data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item has-treeview {{ Request::is('vihicle*') || Request::is('transfer*') || Request::is('maintenance*') ? 'menu-open' : '' }}">
-          <a href="#" class="nav-link sidebar-nav-link {{ Request::is('vihicle*') || Request::is('transfer*') || Request::is('maintenance*') ? 'active' : '' }}">
+        <li class="nav-item has-treeview {{ Request::is('vehicle*') || Request::is('transfer*') || Request::is('maintenance*') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link sidebar-nav-link {{ Request::is('vehicle*') || Request::is('transfer*') || Request::is('maintenance*') ? 'active' : '' }}">
             <i class="nav-icon fas fa-tasks"></i>
             <p>
               Quản lý phương tiện
@@ -20,7 +20,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.vihicle.index') }}" class="nav-link nav-sub-link {{ Request::is('vihicle*') ? 'active' : '' }}">
+              <a href="{{ route('admin.vehicle.index') }}" class="nav-link nav-sub-link {{ Request::is('vehicle*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-truck"></i>
                 <p>Phương tiện</p>
               </a>
@@ -57,7 +57,7 @@
             </li>
             <li class="nav-item">
               <a href="{{ route('admin.department.index') }}" class="nav-link nav-sub-link {{ Request::is('department*') ? "active" : '' }}">
-                <i class="nav-icon far fa-building"></i>
+                <i class="nav-icon fa-solid fa-building-user"></i>
                 <p>Phòng ban</p>
               </a>
             </li>
@@ -69,7 +69,7 @@
             </li>
             <li class="nav-item">
               <a href="{{ route('admin.unit.index') }}" class="nav-link nav-sub-link {{ Request::is('unit*') ? "active" : '' }}">
-                <i class="nav-icon far fa-circle nav-icon"></i>
+                <i class="nav-icon fa-solid fa-building-flag"></i>
                 <p>Đơn vị</p>
               </a>
             </li>
@@ -87,7 +87,7 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ route('admin.warehouse.index') }}" class="nav-link nav-sub-link {{ Request::is('warehouse*') ? "active" : '' }}">
-                <i class="nav-icon fas fa-cogs"></i>
+                <i class="nav-icon fa-solid fa-boxes-stacked"></i>
                 <p>Vật tư</p>
               </a>
             </li>

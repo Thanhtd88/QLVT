@@ -12,6 +12,12 @@ class PersonalExport implements FromCollection, WithHeadings, WithMapping
     /**
     * @return \Illuminate\Support\Collection
     */
+    // protected $data;
+
+    // public function __construct($data)
+    // {
+    //     $this->data = $data;
+    // }
 
     public function headings(): array {
 
@@ -47,8 +53,9 @@ class PersonalExport implements FromCollection, WithHeadings, WithMapping
         return Personal::with('department')
         ->with('unit')
         ->with('project')
-        ->with('vihicle')
+        ->with('vehicle')
         ->get();
+        // return $this->data;
     }
     
     public function map($row): array{
@@ -73,7 +80,7 @@ class PersonalExport implements FromCollection, WithHeadings, WithMapping
             $row->ngay_nghi,    
             $row->trang_thai == 0 ? 'Đang làm' : 'Nghỉ việc',
             $row->bhxh == 'on' ? 'Đã đóng' : 'Chưa đóng',
-            $row->vihicle_id == null ? '' : $row->vihicle->so_xe
+            $row->vehicle_id == null ? '' : $row->vehicle->so_xe
         ];
     }
     

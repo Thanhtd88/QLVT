@@ -31,6 +31,7 @@ class UnitController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
+        // dd($request->all());
         $name = $request->don_vi;
         //Validate
         $request->validate([
@@ -42,14 +43,13 @@ class UnitController extends Controller {
             'don_vi.max' => 'Tên có độ dài tối đa :max ký tự'     
         ]);
         
-        //Cách 3: Eloquent (tương tác với Model)
         $check = Unit::create([
             'don_vi' => $name,
             'slug' => $request->slug
         ]);
 
         $massage = $check ? 'Thêm mới thành công' : 'Thêm mới thất bại';
-        //Session Flash
+        
         return redirect()->route('admin.unit.index')->with('msg', $massage);
     }
 

@@ -24,8 +24,8 @@ class Personal extends Model
         return $this->belongsTo(Project::class, 'project_id')->withTrashed();
     }
 
-    public function vihicle() {
-        return $this->belongsTo(Vihicle::class, 'vihicle_id')->withTrashed();
+    public function vehicle() {
+        return $this->belongsTo(Vehicle::class, 'vehicle_id')->withTrashed();
     }
     
     public function transfers() {

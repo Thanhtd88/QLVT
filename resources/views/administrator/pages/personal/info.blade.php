@@ -1,6 +1,6 @@
 <form role="form" method="POST">
     <div class="modal fade" id="info-personal{{ $personal->id }}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Thông tin cá nhân</h5>
@@ -9,11 +9,11 @@
             <div class="modal-body">
                 <div class="col-md-12 two-column">                            
                     <div class="col-md-2">
-                        <div class="card-body body-shadow">
+                        <div class="card-body body-shadow img-thumbnail">
                             @if (!is_null($personal->image_url))
-                                <img src="{{ asset('image'). '/'. $personal->image_url }}" alt="" style="width:100%">
+                                <img src="{{ asset('image'). '/'. $personal->image_url }}" class="" alt="" style="width:100%">
                             @else
-                                <p>Chưa có ảnh</p>      
+                                <p class="text-center">Chưa có ảnh</p>      
                             @endif   
                         </div>
                     </div>

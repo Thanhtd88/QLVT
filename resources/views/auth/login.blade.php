@@ -10,14 +10,10 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('administrator/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('administrator/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('administrator/dist/css/admin.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <style>
-        body{background-attachment: fixed!important; background-repeat: no-repeat!important; background-position: center!important; background-size: cover!important; background: url('{{ asset('administrator/dist/img/background.png') }}')}
-        .content-wrapper{background: none!important; overflow: hidden}
-        .main-footer{margin: 0!important; background: #343a40}
-    </style>
+    <link rel="stylesheet" href="{{ asset('administrator/dist/css/login.css') }}">
 </head>
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
@@ -47,6 +43,12 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
         <section class="content-wrapper">
+            <div class="background-cont">
+                <img src="{{ asset('administrator/dist/img/container-background.png') }}" alt="">
+            </div>
+            <div class="background-line">
+                <img src="{{ asset('administrator/dist/img/line-background.png') }}" alt="">
+            </div>
             <div class="login">
                 <div class="row">
                 <!-- left column -->
@@ -98,15 +100,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-
                                     <div class="card-footer">
-                                        {{-- @if (Route::has('password.request'))
-                                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                                                {{ __('Forgot your password?') }}
-                                            </a>
-                                        @endif --}}
-
                                         <button class="ms-3 btn btn-primary float-right"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
                                     </div>
                                 </div>

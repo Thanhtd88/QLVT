@@ -1,6 +1,9 @@
 @extends('administrator.layout.master')
 
 @section('content')
+    @if (session('msg'))
+        @include('administrator.pages.notification')
+    @endif
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">

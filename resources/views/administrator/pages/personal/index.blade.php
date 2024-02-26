@@ -2,13 +2,7 @@
 
 @section('content')
 @if (session('msg'))
-  <div class="position-fixed top-0 right-0 p-3" style="z-index: 9; right: 35%; top: 10;">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="0">
-      <div class="toast-body alert-success">
-        {{ session('msg') }}
-      </div>
-    </div>
-  </div>
+  @include('administrator.pages.notification')
 @endif
 @error('import_file') 
   <div class="position-fixed top-0 right-0 p-3" style="z-index: 9; right: 35%; top: 10;">
@@ -70,7 +64,7 @@
                     <td>{{ $personal->ma_nv }}</td>
                     <td>{{ $personal->ho_ten }}</td>
                     <td>{{ $personal->sdt }}</td>
-                    <td>{{ !is_null($personal->vihicle_id) ? $personal->vihicle->so_xe : '' }}</td>
+                    <td>{{ !is_null($personal->vehicle_id) ? $personal->vehicle->so_xe : '' }}</td>
                     <td>{{ !is_null($personal->project_id) ? $personal->project->du_an : '' }}</td>
                     <td>{{ !is_null($personal->department_id) ? $personal->department->phong_ban : '' }}</td>
                     <td>{{ $personal->trang_thai === 0 ? 'Đang làm' : 'Nghỉ việc' }}</td>

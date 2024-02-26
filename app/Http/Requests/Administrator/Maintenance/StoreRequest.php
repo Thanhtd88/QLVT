@@ -22,12 +22,11 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'ngay_thuc_hien' => 'required',
-            // 'so_luong' => 'required',
-            // 'nhan_hieu' => 'required',
-            // 'vihicle_id ' => 'required',
-            // 'warehouse_id ' => 'required',
-            // 'loai' => 'required',
+            'ngay_thuc_hien' => 'required',
+            'so_luong' => 'required',
+            'vihicle_id ' => 'required',
+            'warehouse_id ' => 'required',
+            'loai' => 'required',
         ];
     }
     public function messages()
@@ -35,7 +34,6 @@ class StoreRequest extends FormRequest
         return [
             'ngay_thuc_hien.required' => 'Bắt buộc',
             'so_luong.required' => 'Bắt buộc',
-            'nhan_hieu.required' => 'Bắt buộc',
             'vihicle_id.required' => 'Bắt buộc',
             'warehouse_id.required' => 'Bắt buộc',
             'loai.required' => 'Bắt buộc',

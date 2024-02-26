@@ -35,130 +35,130 @@
                         <div class="card-body style="display: block;"">    
                             <div class="row">
                                 <div class="box1 col-md-2">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-stream"></i></span>
                                         </div>
-                                        <x-text-input required value="{{ old('ma_nv') }}" type="number" class="form-control" placeholder="Mã nhân viên" name="ma_nv" autofocus/>
-                                        @error('ma_nv') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        <x-text-input value="{{ old('ma_nv') }}" type="number" class="form-control" placeholder="Mã nhân viên" name="ma_nv" autofocus/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('ma_nv')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
-                                        <x-text-input required value="{{ old('ho_ten') }}" type="text" class="form-control" placeholder="Họ tên" name="ho_ten"/>
-                                        @error('ho_ten') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        <x-text-input value="{{ old('ho_ten') }}" type="text" class="form-control" placeholder="Họ tên" name="ho_ten"/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('ho_ten')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-3">
                                     <div class="input-group mb-3">
-                                        <div class="input-group date reservationdate" id="ngay_sinh" data-target-input="nearest">
+                                        <div class="input-group date reservationdate input-group-sm" id="ngay_sinh" data-target-input="nearest">
                                             <div class="input-group-prepend" data-target="#ngay_sinh" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fas fa-birthday-cake"></i></div>
                                             </div>
-                                            <x-text-input required name="ngay_sinh" type="text" value="{{ old('ngay_sinh') }}" class="form-control datetimepicker-input" data-target="#ngay_sinh" placeholder="Ngày sinh"/>
-                                            @error('ngay_sinh') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                            <x-text-input name="ngay_sinh" type="text" value="{{ old('ngay_sinh') }}" class="form-control datetimepicker-input" data-target="#ngay_sinh" placeholder="Ngày sinh"/>
                                         </div>
+                                        <x-input-error :messages="$errors->get('ngay_sinh')" class="mt-2" style="color: red"/>
                                     </div>
                                 </div>
                                 <div class="box1 col-md-3">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                         </div>
-                                        <x-text-input required  value="{{ old('sdt') }}" type="text" class="form-control" placeholder="Số điện thoại" name="sdt"/>
-                                        @error('sdt') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        <x-text-input  value="{{ old('sdt') }}" type="text" class="form-control" placeholder="Số điện thoại" name="sdt"/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('sdt')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-12">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                         </div>
-                                        <x-text-input required value="{{ old('dia_chi') }}" type="text" class="form-control" placeholder="Địa chỉ" name="dia_chi"/>
-                                        @error('dia_chi') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        <x-text-input value="{{ old('dia_chi') }}" type="text" class="form-control" placeholder="Địa chỉ" name="dia_chi"/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('dia_chi')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                         </div>
-                                        <x-text-input required value="{{ old('cccd') }}" type="text" class="form-control" placeholder="Căn cước công dân" name="cccd"/>
-                                        @error('cccd') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        <x-text-input value="{{ old('cccd') }}" type="text" class="form-control" placeholder="Căn cước công dân" name="cccd"/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('cccd')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
                                     <div class="input-group mb-3">
-                                        <div class="input-group date reservationdate" id="ngay_cap_cccd" data-target-input="nearest">
+                                        <div class="input-group date reservationdate input-group-sm" id="ngay_cap_cccd" data-target-input="nearest">
                                             <div class="input-group-prepend" data-target="#ngay_cap_cccd" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
-                                            <x-text-input required name="ngay_cap_cccd" type="text" value="{{ old('ngay_cap_cccd') }}" class="form-control datetimepicker-input" data-target="#ngay_cap_cccd" placeholder="Ngày cấp CCCD"/>
-                                            @error('ngay_cap_cccd') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                            <x-text-input name="ngay_cap_cccd" type="text" value="{{ old('ngay_cap_cccd') }}" class="form-control datetimepicker-input" data-target="#ngay_cap_cccd" placeholder="Ngày cấp CCCD"/>
                                         </div>
+                                        <x-input-error :messages="$errors->get('ngay_cap_cccd')" class="mt-2" style="color: red"/>
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                         </div>
-                                        <x-text-input required value="{{ old('noi_cap_cccd') }}" type="text" class="form-control" placeholder="Nơi cấp CCCD" name="noi_cap_cccd"/>
-                                        @error('noi_cap_cccd') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        <x-text-input value="{{ old('noi_cap_cccd') }}" type="text" class="form-control" placeholder="Nơi cấp CCCD" name="noi_cap_cccd"/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('noi_cap_cccd')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                         </div>  
                                         <x-text-input value="{{ old('gplx') }}" type="text" class="form-control" placeholder="Số giấy phép lái xe" name="gplx"/>
-                                        @error('gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
+                                    <x-input-error :messages="$errors->get('gplx')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-2">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                                         </div>
                                         <x-text-input value="{{ old('hang_gplx') }}" type="text" class="form-control" placeholder="Hạng GPLX" name="hang_gplx"/>
-                                        @error('hang_gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
+                                    <x-input-error :messages="$errors->get('hang_gplx')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-3">
                                     <div class="input-group mb-3">
-                                        <div class="input-group date reservationdate" id="ngay_cap_gplx" data-target-input="nearest">
+                                        <div class="input-group date reservationdate input-group-sm" id="ngay_cap_gplx" data-target-input="nearest">
                                             <div class="input-group-prepend" data-target="#ngay_cap_gplx" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
                                             </div>
                                             <x-text-input name="ngay_cap_gplx" type="text" value="{{ old('ngay_cap_gplx') }}" class="form-control datetimepicker-input" data-target="#ngay_cap_gplx" placeholder="Ngày cấp GPLX"/>
-                                            @error('ngay_cap_gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                         </div>
+                                        <x-input-error :messages="$errors->get('ngay_cap_gplx')" class="mt-2" style="color: red"/>
                                     </div>
                                 </div>
                                 <div class="box1 col-md-3">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                         </div>
                                         <x-text-input value="{{ old('noi_cap_gplx') }}" type="text" class="form-control" placeholder="Nơi cấp GPLX" name="noi_cap_gplx"/>
-                                        @error('noi_cap_gplx') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
+                                    <x-input-error :messages="$errors->get('noi_cap_gplx')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-12">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-image"></i></span>
                                         </div>
-                                        <x-text-input type="file" class="form-control" name="image_url"/>
-                                        @error('image_url') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                        <x-text-input type="file" class="form-control" name="image_url" accept="image/jpeg, image/png"/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('image_url')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-building"></i></span>
                                         </div>
@@ -168,11 +168,11 @@
                                                 <option {{ old('department_id') == $department->id ? 'selected' : '' }} value="{{ $department->id }}">{{ $department->phong_ban }}</option>  
                                             @endforeach                                                
                                         </select>
-                                        @error('department_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
+                                    <x-input-error :messages="$errors->get('department_id')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-circle nav-icon"></i></span>
                                         </div>
@@ -182,11 +182,11 @@
                                                 <option {{ old('unit_id') == $unit->id ? 'selected' : '' }} value="{{ $unit->id }}">{{ $unit->don_vi }}</option>  
                                             @endforeach  
                                         </select>
-                                        @error('unit_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
+                                    <x-input-error :messages="$errors->get('unit_id')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-project-diagram"></i></span>
                                         </div>
@@ -196,34 +196,33 @@
                                                 <option {{ old('project_id') == $project->id ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->du_an }}</option>  
                                             @endforeach
                                         </select>
-                                        @error('project_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
+                                    <x-input-error :messages="$errors->get('project_id')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-4">
                                     <div class="input-group mb-3">
-                                        <div class="input-group date reservationdate" id="ngay_vao" data-target-input="nearest">
+                                        <div class="input-group date reservationdate input-group-sm" id="ngay_vao" data-target-input="nearest">
                                             <div class="input-group-prepend" data-target="#ngay_vao" data-toggle="datetimepicker">
                                                 <span class="input-group-text"><i class="far fa-calendar-check"></i></span>
                                             </div>
-                                            <x-text-input required name="ngay_vao" type="text" value="{{ old('ngay_vao') }}" class="form-control datetimepicker-input" data-target="#ngay_vao" placeholder="Ngày vào làm"/>
-                                            @error('ngay_vao') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                            <x-text-input name="ngay_vao" type="text" value="{{ old('ngay_vao') }}" class="form-control datetimepicker-input" data-target="#ngay_vao" placeholder="Ngày vào làm"/>
                                         </div>
+                                        <x-input-error :messages="$errors->get('ngay_vao')" class="mt-2" style="color: red"/>
                                     </div>
                                 </div>
                                 <div class="box1 col-md-4 personal-check">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-switch">
-                                          <x-text-input type="checkbox" class="custom-control-input" id="customSwitch1" name="bhxh"/>
-                                          <label class="custom-control-label" for="customSwitch1">Bảo hiểm xã hội</label>
-                                        </div>
-                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="bhxh" name="bhxh">
+                                        <label class="form-check-label" for="bhxh">Bảo hiểm xã hội</label>
+                                      </div>
                                 </div>
                             </div>        
                         </div>    
                         <!-- /.card-body -->
       
-                        <div class="card-footer">
+                        <div class="card-footer btn-group-sm">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu</button>
+                            <a href="{{ route('admin.personal.index') }}" class="btn btn-danger"><i class="fas fa-times"></i> Hủy</a>
                         </div>
                     </form>
                 </div>

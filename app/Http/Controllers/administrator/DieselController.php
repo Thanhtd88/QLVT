@@ -7,7 +7,7 @@ use App\Http\Requests\Administrator\Diesel\StoreRequest;
 use App\Http\Requests\Administrator\Diesel\UpdateRequest;
 use App\Models\administrator\Diesel;
 use App\Models\administrator\Personal;
-use App\Models\administrator\Vihicle;
+use App\Models\administrator\Vehicle;
 use App\Models\administrator\Warehouse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,12 +20,12 @@ class DieselController extends Controller
      */
     public function index()
     {
-        $diesels = Diesel::with('vihicle')
+        $diesels = Diesel::with('vehicle')
         ->with('personal')
         ->orderBy('ngay_do', 'desc')
         ->get();
         if(Auth::user()->role == 1){
-            $diesels = Diesel::with('vihicle')
+            $diesels = Diesel::with('vehicle')
             ->orderBy('ngay_do', 'desc')
             ->with('personal')
             ->withTrashed()
@@ -39,10 +39,10 @@ class DieselController extends Controller
      */
     public function create()
     {
-        $vihicles = Vihicle::all();
+        $vehicles = Vehicle::all();
         $personals = Personal::all();
         return view('administrator.pages.diesel.create')
-        ->with('vihicles', $vihicles)
+        ->with('vehicles', $vehicles)
         ->with('personals', $personals);
     }
 
@@ -51,14 +51,14 @@ class DieselController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $ngay_truoc = Diesel::where('vihicle_id', $request->vihicle_id)->orderBy('ngay_do', 'desc')->first();        
+        $ngay_truoc = Diesel::where('vehicle_id', $request->vehicle_id)->orderBy('ngay_do', 'desc')->first();        
         $ngay_do = Carbon::createFromFormat('d/m/Y H:i:s', $request->ngay_do)->format('Y-m-d H:i:s');
         // dd($ngay_do);
         $warehouse = Warehouse::where('ma_vat_tu', 'DO001')->first();
         $thanh_tien = $warehouse->don_gia * $request->so_lit;
 
-        $vihicle = Vihicle::find($request->vihicle_id);
-        $odo_cu = !is_null($vihicle->odo) ? $vihicle->odo : 0;
+        $vehicle = Vehicle::find($request->vehicle_id);
+        $odo_cu = !is_null($vehicle->odo) ? $vehicle->odo : 0;
         
         if($odo_cu == 0){
             $quang_duong = 0;
@@ -84,7 +84,7 @@ class DieselController extends Controller
             'thanh_tien' => $thanh_tien,
             'quang_duong' => $quang_duong,
             'dinh_muc' => $dinh_muc,
-            'vihicle_id' => $request->vihicle_id,
+            'vehicle_id' => $request->vehicle_id,
             'personal_id' => $request->personal_id,
         ]);
 
@@ -92,9 +92,9 @@ class DieselController extends Controller
         $warehouse->ton_kho -= $request->so_lit;
         $warehouse->save();
 
-        $vihicle = Vihicle::find($request->vihicle_id);
-        $vihicle->odo = $request->odo;
-        $vihicle->save();
+        $vehicle = Vehicle::find($request->vehicle_id);
+        $vehicle->odo = $request->odo;
+        $vehicle->save();
 
         return redirect()->route('admin.diesel.index')->with('msg', 'Thêm thông tin xe đổ dầu thành công');
     }
@@ -113,10 +113,10 @@ class DieselController extends Controller
     public function edit(string $id)
     {
         $diesel = Diesel::find($id);
-        $vihicles = Vihicle::all();
+        $vehicles = Vehicle::all();
         $personals = Personal::all();
         return view('administrator.pages.diesel.detail')
-        ->with('vihicles', $vihicles)
+        ->with('vehicles', $vehicles)
         ->with('personals', $personals)
         ->with('diesel', $diesel);
 
@@ -128,12 +128,12 @@ class DieselController extends Controller
     public function update(UpdateRequest $request, string $id)
     {
         $diesel = Diesel::find($id);
-        $vihicle_cu = Vihicle::find($diesel->vihicle_id);
-        $vihicle = Vihicle::find($request->vihicle_id);
+        $vehicle_cu = Vehicle::find($diesel->vehicle_id);
+        $vehicle = Vehicle::find($request->vehicle_id);
         $warehouse = Warehouse::where('ma_vat_tu', 'DO001')->first();        
         $ngay_do = Carbon::createFromFormat('d/m/Y H:i:s', $request->ngay_do)->format('Y-m-d H:i:s');
 
-        if($diesel->vihicle_id == $request->vihicle_id && $diesel->so_lit == $request->so_lit && $diesel->odo == $request->odo){
+        if($diesel->vehicle_id == $request->vehicle_id && $diesel->so_lit == $request->so_lit && $diesel->odo == $request->odo){
             $arrayData = [
                 'ngay_do' => $ngay_do,
                 'noi_do' => $request->noi_do,
@@ -141,10 +141,10 @@ class DieselController extends Controller
             ];
             $diesel->update($arrayData);
         }else{
-            $ngay_truoc = Diesel::where('vihicle_id', $request->vihicle_id)->orderBy('ngay_do', 'desc')->first();       
+            $ngay_truoc = Diesel::where('vehicle_id', $request->vehicle_id)->orderBy('ngay_do', 'desc')->first();       
             // dd($ngay_truoc);
             $thanh_tien = $warehouse->don_gia * $request->so_lit;
-            $odo_cu = !is_null($vihicle->odo) ? $vihicle->odo : 0;
+            $odo_cu = !is_null($vehicle->odo) ? $vehicle->odo : 0;
             if($request->odo < $odo_cu){
                 return redirect()->back()->with('msg', 'Số km mới nhỏ hơn số km cũ. Kiểm tra lại!');
             }
@@ -172,29 +172,29 @@ class DieselController extends Controller
                 'thanh_tien' => $thanh_tien,
                 'quang_duong' => $quang_duong,
                 'dinh_muc' => $dinh_muc,
-                'vihicle_id' => $request->vihicle_id,
+                'vehicle_id' => $request->vehicle_id,
                 'personal_id' => $request->personal_id,
             ];
 
             $diesel->update($arrayData);
 
-            //xóa thông tin cũ trong warehouse và vihicle        
+            //xóa thông tin cũ trong warehouse và vehicle        
             $warehouse->tong_xuat -= $diesel->so_lit;
             $warehouse->ton_kho += $diesel->so_lit;
             $warehouse->save();
 
-            if($diesel->ngay_do == $request->ngay_do && $diesel->vihicle_id == $request->vihicle_id){
-                $vihicle_cu->odo -= $diesel->quang_duong;
-                $vihicle_cu->save();
+            if($diesel->ngay_do == $request->ngay_do && $diesel->vehicle_id == $request->vehicle_id){
+                $vehicle_cu->odo -= $diesel->quang_duong;
+                $vehicle_cu->save();
             }
             
-            // cập nhật thông tin mới trong warehouse và vihicle
+            // cập nhật thông tin mới trong warehouse và vehicle
             $warehouse->tong_xuat += $request->so_lit;
             $warehouse->ton_kho -= $request->so_lit;
             $warehouse->save();
 
-            $vihicle->odo = $request->odo;
-            $vihicle->save();
+            $vehicle->odo = $request->odo;
+            $vehicle->save();
         }
 
         return redirect()->route('admin.diesel.index')->with('msg', 'Cập nhật thành công');
@@ -206,7 +206,7 @@ class DieselController extends Controller
     public function destroy(string $id)
     {
         $diesel = Diesel::find($id);
-        $ngay_moi = Diesel::where('vihicle_id', $diesel->vihicle_id)->orderBy('ngay_do', 'desc')->first();
+        $ngay_moi = Diesel::where('vehicle_id', $diesel->vehicle_id)->orderBy('ngay_do', 'desc')->first();
         $diesel->delete();
 
         $warehouse = Warehouse::where('ma_vat_tu', 'DO001')->first();     
@@ -214,10 +214,10 @@ class DieselController extends Controller
         $warehouse->ton_kho += $diesel->so_lit;
         $warehouse->save();
 
-        if($diesel->ngay_do == $ngay_moi->ngay_do && $diesel->vihicle_id == $ngay_moi->vihicle_id){
-            $vihicle = Vihicle::find($diesel->vihicle_id);
-            $vihicle->odo -= $diesel->quang_duong;
-            $vihicle->save();
+        if($diesel->ngay_do == $ngay_moi->ngay_do && $diesel->vehicle_id == $ngay_moi->vehicle_id){
+            $vehicle = Vehicle::find($diesel->vehicle_id);
+            $vehicle->odo -= $diesel->quang_duong;
+            $vehicle->save();
         }
 
         return redirect()->route('admin.diesel.index')->with('msg', "Xóa thông tin đổ dầu thành công");
@@ -232,9 +232,9 @@ class DieselController extends Controller
         $warehouse->ton_kho -= $diesel->so_lit;
         $warehouse->save();
 
-        $vihicle = Vihicle::find($diesel->vihicle_id);
-        $vihicle->odo = $diesel->odo;
-        $vihicle->save();
+        $vehicle = Vehicle::find($diesel->vehicle_id);
+        $vehicle->odo = $diesel->odo;
+        $vehicle->save();
 
         return redirect()->route('admin.diesel.index')->with('msg', "Khôi phục thông tin đổ dầu thành công");
     }

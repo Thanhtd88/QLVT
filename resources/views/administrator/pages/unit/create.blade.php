@@ -33,14 +33,16 @@
                         <form role="form" method="POST" action="{{ route('admin.unit.store') }}">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="tenpb">Tên đơn vị</label>
-                                    <x-text-input id="name" type="text" class="form-control" :errors="$errors" name="don_vi" :value="old('don_vi')" required />
+                                    <div class="form-floating mb-3">
+                                        <x-text-input type="text" class="form-control" id="name" placeholder="" name="don_vi" required/>
+                                        <label for="name">Tên đơn vị</label>
+                                    </div>
                                     <x-input-error :messages="$errors->get('don_vi')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="slug">Slug</label>
                                     <input type="text" class="form-control" id="slug" name="slug" readonly>
-                                </div>          
+                                </div>
                                 @csrf              
                             </div>                            
                             <!-- /.card-body --> 

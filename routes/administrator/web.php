@@ -1,6 +1,4 @@
 <?php
-
-use App\Exports\PersonalExport;
 use App\Http\Controllers\administrator\AccountController;
 use App\Http\Controllers\administrator\DepartmentController;
 use App\Http\Controllers\administrator\DieselController;
@@ -12,22 +10,20 @@ use App\Http\Controllers\administrator\StockInController;
 use App\Http\Controllers\administrator\SupplierController;
 use App\Http\Controllers\administrator\TransferHistoriesController;
 use App\Http\Controllers\administrator\UnitController;
-use App\Http\Controllers\administrator\VihicleController;
+use App\Http\Controllers\administrator\VehicleController;
 use App\Http\Controllers\administrator\WarehouseController;
 use App\Http\Controllers\DashboardController;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Maatwebsite\Excel\Facades\Excel;
 
 Route::middleware('check.login')->name('admin.')->group(function(){
-
-    Route::resource('department', DepartmentController::class);
-    Route::controller(DepartmentController::class)->group(function(){
-        Route::post('department/slug', 'createSlug')->name('department.slug');
-        Route::post('department/restore/{id}', 'restore')->name('department.restore');
-        Route::post('department/force-delete/{id}', 'forceDelete')->name('department.force.delete');
-    });
-
+        Route::resource('department', DepartmentController::class);
+        Route::controller(DepartmentController::class)->group(function(){
+            Route::post('department/slug', 'createSlug')->name('department.slug');
+            Route::post('department/restore/{id}', 'restore')->name('department.restore');
+            Route::post('department/force-delete/{id}', 'forceDelete')->name('department.force.delete');
+        });
+    
     Route::resource('diesel', DieselController::class);
     Route::controller(DieselController::class)->group(function(){
         Route::post('diesel/restore/{id}', 'restore')->name('diesel.restore');
@@ -48,6 +44,17 @@ Route::middleware('check.login')->name('admin.')->group(function(){
         Route::get('export-personal-data', 'exportPersonalData')->name('personal.export');
     });
 
+    Route::resource('vehicle', VehicleController::class);
+    Route::controller(VehicleController::class)->group(function(){
+        Route::post('vehicle/restore/{id}', 'restore')->name('vehicle.restore');
+        Route::post('vehicle/force-delete/{id}', 'forceDelete')->name('vehicle.force.delete');
+        Route::post('vehicle/import', 'importExcelData')->name('vehicle.import');
+        Route::get('export-vehicle-data', 'exportVehicleData')->name('vehicle.export');
+        Route::post('vehicle/h/{id}', 'statusHoatDong')->name('vehicle.hoatdong');
+        Route::post('vehicle/t/{id}', 'statusTamDung')->name('vehicle.tamdung');
+        Route::post('vehicle/s/{id}', 'statusSuaChua')->name('vehicle.suachua');
+    });
+
     Route::resource('project', ProjectController::class);
     Route::controller(ProjectController::class)->group(function(){
         Route::post('project/slug', 'createSlug')->name('project.slug');
@@ -63,11 +70,9 @@ Route::middleware('check.login')->name('admin.')->group(function(){
 
     Route::resource('transfer', TransferHistoriesController::class);
     Route::controller(TransferHistoriesController::class)->group(function(){
-        Route::post('transfer/form-vihicle', 'formVihicle')->name('transfer.form.vihicle');
-        Route::post('transfer/form-deliver', 'formDeliver')->name('transfer.form.deliver');
-        Route::post('transfer/form-receiver', 'formReceiver')->name('transfer.form.receiver');
         Route::post('transfer/restore/{id}', 'restore')->name('transfer.restore');
         Route::post('transfer/force-delete/{id}', 'forceDelete')->name('transfer.force.delete');
+        Route::get('transfer/printer/preview', 'printer')->name('transfer.printer');
     });
 
     Route::resource('unit', UnitController::class);
@@ -75,12 +80,6 @@ Route::middleware('check.login')->name('admin.')->group(function(){
         Route::post('unit/slug', 'createSlug')->name('unit.slug');
         Route::post('unit/restore/{id}', 'restore')->name('unit.restore');
         Route::post('unit/force-delete/{id}', 'forceDelete')->name('unit.force.delete');
-    });
-
-    Route::resource('vihicle', VihicleController::class);
-    Route::controller(VihicleController::class)->group(function(){
-        Route::post('vihicle/restore/{id}', 'restore')->name('vihicle.restore');
-        Route::post('vihicle/force-delete/{id}', 'forceDelete')->name('vihicle.force.delete');
     });
 
     Route::resource('warehouse', WarehouseController::class);
@@ -103,18 +102,12 @@ Route::middleware('check.login')->name('admin.')->group(function(){
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     
-    Route::resource('account', AccountController::class)->middleware('check.admin');
-    Route::middleware('check.admin')->controller(AccountController::class)->group(function(){
+    Route::resource('account', AccountController::class);
+    Route::controller(AccountController::class)->group(function(){
         Route::post('account/restore/{id}', 'restore')->name('account.restore');
         Route::post('account/force-delete/{id}', 'forceDelete')->name('account.force.delete');
+        Route::post('account/reset-password/{id}', 'resetPassword')->name('account.reset.password');
     });
 
-    // Route::get('test/export', function(){
-    //     $time = Carbon::now()->format('Ymd_His');
-
-    //     $fileName = "ds_nhan_vien_$time.xlsx";
-
-    //     return Excel::download(new PersonalExport, $fileName);
-    // })->name('export.excel');
 });
 

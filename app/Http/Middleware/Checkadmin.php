@@ -16,6 +16,6 @@ class Checkadmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return (Auth::check() && Auth::user()->role == 1) ? $next($request) : redirect()->route('admin.dashboard');
+        return (Auth::check() && Auth::user()->role == 1) ? $next($request) : redirect()->back();
     }
 }

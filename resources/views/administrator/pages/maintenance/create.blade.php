@@ -43,76 +43,60 @@
                         <div class="card-body style="display: block;"">    
                             <div class="row">
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Hành động</span>
-                                        </div>
-                                        <select class="custom-select" name="loai">
-                                            <option value="">--Lựa chọn--</option>
-                                            <option {{ old('loai') == 0 ? 'selected' : '' }} value="0">Sửa chữa - Bảo dưỡng</option>
-                                            <option {{ old('loai') == 1 ? 'selected' : '' }} value="1">Bảo hiểm</option>
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <span class="input-group-text">Loại</span>
+                                        <select class="form-select" name="loai" required>
+                                            <option value="" selected>--Lựa chọn--</option>
+                                            <option {{ old('loai') === 0 ? 'selected' : '' }} value="0">Sửa chữa - Bảo dưỡng</option>
+                                            <option {{ old('loai') === 1 ? 'selected' : '' }} value="1">Bảo hiểm</option>
                                         </select>
-                                        @error('loai') <span style="color: red">{{ ' *'.$message }}</span>@enderror
                                     </div>
+                                    <x-input-error :messages="$errors->get('loai')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group date reservationdate" id="ngay_thuc_hien" data-target-input="nearest">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Ngày thực hiện</span>
-                                            </div>
-                                            <input name="ngay_thuc_hien" type="text" value="{{ old('ngay_thuc_hien') }}" class="form-control datetimepicker-input" data-target="#ngay_thuc_hien" />
-                                            <div class="input-group-append" data-target="#ngay_thuc_hien" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="far fa-calendar-check"></i></div>
-                                            </div>
-                                            @error('ngay_thuc_hien') <span style="color: red">{{ ' *'.$message }}</span>@enderror
-                                        </div>
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <span class="input-group-text">Ngày thực hiện</span>
+                                        <input class="form-control datepicker" type="text" name="ngay_thuc_hien" value="{{ old('ngay_thuc_hien') }}" autocomplete="off" required/>
                                     </div>
+                                    <x-input-error :messages="$errors->get('ngay_thuc_hien')" class="mt-2" style="color: red"/>
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3 box-vihicle">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Số xe</span>
-                                        </div>
-                                        <select class="form-control select2" name="vihicle_id">
-                                            <option value=""></option>
-                                            @foreach ($vihicles as $vihicle)
-                                                <option value={{ $vihicle->id }}>{{ $vihicle->so_xe }}</option>
-                                            @endforeach                                    
-                                        </select>
-                                    </div>                                    
-                                </div>@error('vihicle_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <span class="input-group-text">Số xe</span>
+                                        <input type="search" class="form-control" list="list-vehicle" name="vehicle_id" value="{{ request()->get('vehicle_id') }}" required>
+                                        <datalist id="list-vehicle">
+                                            @foreach ($vehicles as $vehicle)
+                                            <option>{{ $vehicle->so_xe }}</option>
+                                            @endforeach
+                                        </datalist>
+                                    </div>     
+                                    <x-input-error :messages="$errors->get('vehicle_id')" class="mt-2" style="color: red"/>                               
+                                </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Số km</span>
-                                        </div>
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <span class="input-group-text">Số km</span>
                                         <input type="number" class="form-control" name="odo" value="{{ old('odo') }}">
                                     </div>
-                                    @error('odo') <span style="color: red">{{ ' *'.$message }}</span>@enderror
+                                    <x-input-error :messages="$errors->get('odo')" class="mt-2" style="color: red"/>             
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3 box-vihicle">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Vật tư thay thế</span>
-                                        </div>
-                                        <select class="form-control select2" name="warehouse_id">
-                                            <option selected="selected"></option>
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <span class="input-group-text">Vật tư thay thế</span>
+                                        <input type="search" class="form-control" list="list-vat-tu" name="warehouse_id" value="{{ request()->get('warehouse_id') }}" required>
+                                        <datalist id="list-vat-tu">
                                             @foreach ($warehouses as $warehouse)
-                                                <option value={{ $warehouse->id }}>{{ $warehouse->vat_tu }}</option>
-                                            @endforeach                                    
-                                        </select>
-                                        @error('warehouse_id') <span style="color: red">{{ ' *'.$message }}</span>@enderror
-                                    </div>
+                                                <option>{{ $warehouse->vat_tu }}</option>
+                                            @endforeach  
+                                        </datalist>
+                                    </div>     
+                                    <x-input-error :messages="$errors->get('warehouse_id')" class="mt-2" style="color: red"/> 
                                 </div>
                                 <div class="box1 col-md-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Số lượng</span>
-                                        </div>
-                                        <input type="number" class="form-control" name="so_luong" value="{{ old('so_luong') }}">
-                                        @error('so_luong') <span style="color: red">{{ ' *'.$message }}</span>@enderror
-                                    </div>                                    
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <span class="input-group-text">Số lượng</span>
+                                        <input type="number" class="form-control" name="so_luong" value="{{ old('so_luong') }}" required>
+                                    </div>          
+                                    <x-input-error :messages="$errors->get('so_luong')" class="mt-2" style="color: red"/>                           
                                 </div>
                                 {{-- <div class="box1 col-md-6">
                                     <div class="input-group mb-3">
@@ -125,8 +109,7 @@
                             </div>                            
                         </div>
                         <!-- /.card-body -->
-      
-                        <div class="card-footer">
+                        <div class="card-footer btn-group-sm">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu & tiếp tục</button>                            
                             <a href="{{ route('admin.maintenance.index') }}" class="btn btn-danger float-right"><i class="fas fa-times"></i> Thoát</a>
                         </div>
@@ -144,17 +127,12 @@
 
 @section('js-custom')
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.toast').toast('show');
-    });
     $(function () {
-        $('.select2').select2()  
-    })
-    $('.reservationdate').datetimepicker({
-        format: 'DD/MM/YYYY'
-    });
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
+        $('.toast').toast('show');
+
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+    })        
 </script>        
 @endsection

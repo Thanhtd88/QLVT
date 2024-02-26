@@ -34,8 +34,8 @@
         //default settings for options
         this.parentEl = 'body';
         this.element = $(element);
-        this.startDate = moment().startOf('day');
-        this.endDate = moment().endOf('day');
+        this.startDate = moment().startOf('');
+        this.endDate = moment().endOf('');
         this.minDate = false;
         this.maxDate = false;
         this.maxSpan = false;
@@ -72,8 +72,8 @@
             direction: 'ltr',
             format: moment.localeData().longDateFormat('L'),
             separator: ' - ',
-            applyLabel: 'Apply',
-            cancelLabel: 'Cancel',
+            applyLabel: 'Đồng ý',
+            cancelLabel: 'Hủy',
             weekLabel: 'W',
             customRangeLabel: 'Custom Range',
             daysOfWeek: moment.weekdaysMin(),
